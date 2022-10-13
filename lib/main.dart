@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),
         OnBoardingPage.routeName: (context) => OnBoardingPage(),
-        WelcomePage.routeName : (context) => WelcomePage() ,
-        Home.routeName : (context) => Home() ,
-        MarketModalScreen.routeName : (context) => MarketModalScreen() ,
-        BerandaScreen.routeName : (context) => BerandaScreen() ,
-        AgendaScreen.routeName : (context) => AgendaScreen() ,
-        AccountScreen.routeName : (context) => AccountScreen() ,
+        WelcomePage.routeName : (context) => const WelcomePage() ,
+        Home.routeName : (context) => const Home() ,
+        MarketModalScreen.routeName : (context) => const MarketModalScreen() ,
+        BerandaScreen.routeName : (context) => const BerandaScreen() ,
+        AgendaScreen.routeName : (context) => const AgendaScreen() ,
+        AccountScreen.routeName : (context) => const AccountScreen() ,
 
       }
     );

@@ -1,17 +1,14 @@
-
 import 'package:banjaloka/page/agenda_screen.dart';
+import 'package:banjaloka/page/profile_page.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'account_screen.dart';
 import 'beranda_screen.dart';
 import 'market_modal_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-  static const routeName = '/home-screen' ;
-
+  static const routeName = '/home-screen';
 
   @override
   State<Home> createState() => _HomeState();
@@ -19,8 +16,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // buat sebuah param untuk bottom nav nya
-  List<Map<String, dynamic>>? _pages ;
-  int  _selectedPageIndex = 0 ;
+  List<Map<String, dynamic>>? _pages;
+  int _selectedPageIndex = 0;
 
   @override
   void initState() {
@@ -28,24 +25,23 @@ class _HomeState extends State<Home> {
     super.initState();
     _pages = [
       {
-        'pages' : BerandaScreen() ,
+        'pages': const BerandaScreen(),
       },
       {
-        'pages' : MarketModalScreen(),
+        'pages': const MarketModalScreen(),
       },
       {
-        'pages' : AgendaScreen(),
+        'pages': const AgendaScreen(),
       },
       {
-        'pages' : AccountScreen(),
+        'pages': const ProfilePage(),
       },
-
-    ] ;
+    ];
   }
 
-  void selectedPage(int index){
+  void selectedPage(int index) {
     setState(() {
-      _selectedPageIndex = index ;
+      _selectedPageIndex = index;
     });
   }
 
@@ -62,27 +58,31 @@ class _HomeState extends State<Home> {
           currentIndex: _selectedPageIndex,
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('asset/bottom_nav/home.svg',),
-              activeIcon: SvgPicture.asset('asset/bottom_nav/home_active.svg') ,
+              icon: SvgPicture.asset(
+                'asset/bottom_nav/home.svg',
+              ),
+              activeIcon: SvgPicture.asset('asset/bottom_nav/home_active.svg'),
               label: 'Beranda',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('asset/bottom_nav/storefront.svg'),
-              activeIcon: SvgPicture.asset('asset/bottom_nav/storefront_active.svg'),
+              activeIcon:
+                  SvgPicture.asset('asset/bottom_nav/storefront_active.svg'),
               label: 'Pasar Modal',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('asset/bottom_nav/calendar_month.svg'),
-              activeIcon: SvgPicture.asset('asset/bottom_nav/calendar_month_active.svg'),
+              activeIcon: SvgPicture.asset(
+                  'asset/bottom_nav/calendar_month_active.svg'),
               label: 'Agenda',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('asset/bottom_nav/person.svg'),
-              activeIcon: SvgPicture.asset('asset/bottom_nav/person_active.svg'),
+              activeIcon:
+                  SvgPicture.asset('asset/bottom_nav/person_active.svg'),
               label: 'Profile',
             ),
-          ]
-      ),
+          ]),
     );
   }
 }
