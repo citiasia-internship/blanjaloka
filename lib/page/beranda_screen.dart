@@ -37,7 +37,7 @@ class BerandaScreen extends StatelessWidget {
               ),
               RepositoryProvider(
                   create: (context) => BusinessRepositories() ,
-                child: ContentHome(),
+                child: const ContentHome(),
               )
             ],
           ),
