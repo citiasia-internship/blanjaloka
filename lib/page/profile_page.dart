@@ -26,8 +26,16 @@ class ProfilePage extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 80.0, bottom: 225.0),
                     height: 100.0,
                     width: 100.0,
-                    child: Image.asset(
-                      "assets/img/accountProfile.png",
+                    child:
+                        // const Icon(
+                        //   Icons.person,
+                        //   size: 100,
+                        // ),
+
+                        Image.asset(
+                      "asset/img/accountProfile.png",
+                      height: 100.0,
+                      width: 100.0,
                     ),
                   ),
                   const SizedBox(
@@ -144,11 +152,12 @@ class ProfilePage extends StatelessWidget {
                             ),
                             label: "Keluar",
                             color: primaryBlue6,
+                            colortext: primaryBlue6,
+                            coloricon: primaryBlue6,
                           ),
                           const SizedBox(
                             height: 15.0,
                           ),
-                          const Separator2(),
                         ],
                       )
                     ],

@@ -44,7 +44,7 @@ class Separator2 extends StatelessWidget {
     return Divider(
       height: 1,
       thickness: 1,
-      color: neutralGrey4,
+      color: neutralGrey3,
     );
   }
 }

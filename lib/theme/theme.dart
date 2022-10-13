@@ -48,3 +48,9 @@ TextStyle businessPriceItemCard = GoogleFonts.inter()
 
 TextStyle priceItemCard = GoogleFonts.inter()
     .copyWith(color: neutralBlack, fontWeight: FontWeight.w600, fontSize: 12);
+
+TextStyle fontProfile = GoogleFonts.inter(
+  color: neutralGrey5,
+  fontSize: 14.0,
+  fontWeight: FontWeight.w500,
+);
