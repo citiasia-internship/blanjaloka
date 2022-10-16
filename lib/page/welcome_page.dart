@@ -1,4 +1,5 @@
 import 'package:banjaloka/page/home_page.dart';
+import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/costume_button.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +32,9 @@ class WelcomePage extends StatelessWidget {
             ),
             SizedBox(height: 40),
             GestureDetector(
-              onTap: (){
-                Navigator.pushReplacementNamed(context, Home.routeName);
-              },
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, Home.routeName);
+                },
                 child: costumeButtonFill('Masuk')),
             SizedBox(
               height: 30,
@@ -54,7 +55,12 @@ class WelcomePage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            costumeButtonBorder('Daftar'),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacementNamed(context, RegisterPage.routeName);
+              },
+              child: costumeButtonBorder('Daftar'),
+            ),
           ],
         ),
       ),

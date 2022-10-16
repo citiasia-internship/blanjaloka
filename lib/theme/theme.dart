@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 //for color
 Color primaryBlue6 = const Color(0xff398AB9);
 Color primaryBlue7 = const Color(0xff2F739A);
+Color primaryBlue1 = const Color(0xffF2F7FA);
 Color neutralGrey4 = const Color(0xff686868);
 Color neutralGrey3 = const Color(0xffAEAEAE);
 Color neutralBlack = const Color(0xff181A1B);
@@ -54,3 +55,21 @@ TextStyle fontProfile = GoogleFonts.inter(
   fontSize: 14.0,
   fontWeight: FontWeight.w500,
 );
+
+OutlineInputBorder outlineInputBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(10),
+  borderSide: BorderSide(color: primaryBlue6),
+);
+
+var buttonSecondaryRegister = ElevatedButton.styleFrom(
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+  padding: EdgeInsets.all(17),
+  backgroundColor: progressGrey,
+  side: BorderSide(color: neutralWhite),
+);
+
+var buttonPrimaryRegister = ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.all(17),
+    backgroundColor: primaryBlue6);
+

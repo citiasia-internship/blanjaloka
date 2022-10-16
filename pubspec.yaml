@@ -39,6 +39,7 @@ dependencies:
   google_fonts: any
   flutter_svg: any
   carousel_slider: any
+  dotted_border: any
 
 dev_dependencies:
   flutter_test:
