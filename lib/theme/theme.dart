@@ -20,6 +20,45 @@ TextStyle titleList = GoogleFonts.inter().copyWith(
   fontSize: 16,
 );
 
+TextStyle bigTitle = GoogleFonts.inter().copyWith(
+  color: neutralBlack,
+  fontWeight: FontWeight.bold,
+  fontStyle: FontStyle.normal,
+  fontSize: 18,
+);
+
+TextStyle subtitle = GoogleFonts.inter().copyWith(
+  color: neutralBlack,
+  fontStyle: FontStyle.normal,
+  fontSize: 14,
+);
+
+TextStyle subtitleBold = GoogleFonts.inter().copyWith(
+  color: neutralBlack,
+  fontWeight: FontWeight.bold,
+  fontStyle: FontStyle.normal,
+  fontSize: 14,
+);
+
+TextStyle detailBadge = GoogleFonts.inter().copyWith(
+  color: primaryBlue6,
+  fontWeight: FontWeight.bold,
+  fontStyle: FontStyle.normal,
+  fontSize: 12,
+);
+
+TextStyle unselectedLabel = GoogleFonts.inter().copyWith(
+  color: neutralGrey3,
+  fontStyle: FontStyle.normal,
+  fontSize: 14,
+);
+
+TextStyle selectedLabel = GoogleFonts.inter().copyWith(
+  color: primaryBlue6,
+  fontStyle: FontStyle.normal,
+  fontSize: 14,
+);
+
 TextStyle lihatSemua = GoogleFonts.inter().copyWith(
   color: primaryBlue7,
   fontWeight: FontWeight.w500,
@@ -72,4 +111,3 @@ var buttonPrimaryRegister = ElevatedButton.styleFrom(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.all(17),
     backgroundColor: primaryBlue6);
-
