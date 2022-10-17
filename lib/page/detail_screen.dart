@@ -189,7 +189,7 @@ class DetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryBlue6,
+                      primary : primaryBlue6,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
