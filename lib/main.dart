@@ -1,17 +1,3 @@
-<<<<<<< Updated upstream
-=======
-import 'package:banjaloka/page/account_screen.dart';
-import 'package:banjaloka/page/agenda_screen.dart';
-import 'package:banjaloka/page/beranda_screen.dart';
-import 'package:banjaloka/page/detail_screen.dart';
-import 'package:banjaloka/page/home_page.dart';
-import 'package:banjaloka/page/market_modal_screen.dart';
-import 'package:banjaloka/page/on-board.dart';
-import 'package:banjaloka/page/register/register_page.dart';
-import 'package:banjaloka/page/register/register_page_success.dart';
-import 'package:banjaloka/page/splashscreeen.dart';
-import 'package:banjaloka/page/welcome_page.dart';
->>>>>>> Stashed changes
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,7 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< Updated upstream
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -128,25 +113,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-=======
-        initialRoute: SplashScreen.routeName,
-        debugShowCheckedModeBanner: false,
-        routes: {
-          SplashScreen.routeName: (context) => SplashScreen(),
-          OnBoardingPage.routeName: (context) => OnBoardingPage(),
-          WelcomePage.routeName: (context) => const WelcomePage(),
-          Home.routeName: (context) => const Home(),
-          MarketModalScreen.routeName: (context) => const MarketModalScreen(),
-          BerandaScreen.routeName: (context) => const BerandaScreen(),
-          AgendaScreen.routeName: (context) => const AgendaScreen(),
-          AccountScreen.routeName: (context) => const AccountScreen(),
-          DetailScreen.routeName: (context) => const DetailScreen(),
-
-          // register route
-          RegisterPage.routeName: (context) => const RegisterPage(),
-          RegisterPageSuccess.routeName: (context) =>
-              const RegisterPageSuccess(),
-        });
-  }
-}
->>>>>>> Stashed changes
