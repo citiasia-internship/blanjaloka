@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: SplashScreen.routeName,
+        initialRoute: DetailScreen.routeName,
         debugShowCheckedModeBanner: false,
         routes: {
           SplashScreen.routeName: (context) => SplashScreen(),
