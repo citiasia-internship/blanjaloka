@@ -1,3 +1,4 @@
+import 'package:banjaloka/constants/routes.dart';
 import 'package:banjaloka/page/home_page.dart';
 import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/theme/theme.dart';
@@ -33,7 +34,7 @@ class WelcomePage extends StatelessWidget {
             SizedBox(height: 40),
             GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, Home.routeName);
+                  Navigator.pushNamed(context, loginRoute);
                 },
                 child: costumeButtonFill('Masuk')),
             SizedBox(
