@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryBlue6,
+                        // backgroundColor: primaryBlue6,
                       ),
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
@@ -207,7 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: neutralGrey1,
+                        // backgroundColor: neutralGrey1,
                       ),
                       onPressed: () {},
                       child: Row(
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: neutralGrey1,
+                        // backgroundColor: neutralGrey1,
                       ),
                       onPressed: () {},
                       child: Row(

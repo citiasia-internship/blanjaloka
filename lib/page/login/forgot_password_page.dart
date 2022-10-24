@@ -103,7 +103,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryBlue6),
+                          // backgroundColor: primaryBlue6
+                      ),
                       onPressed: () {
                         Navigator.of(context)
                             .pushNamed(forgotPasswordConfirmationRoute);
