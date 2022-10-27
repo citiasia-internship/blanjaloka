@@ -162,11 +162,10 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryBlue6,
+                        primary: primaryBlue6,
                       ),
                       onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, Home.routeName, (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(context, Home.routeName, (route) => false);
                       },
                       child: Text(
                         "Masuk",
@@ -207,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: neutralGrey1,
+                        primary: neutralGrey1,
                       ),
                       onPressed: () {},
                       child: Row(
@@ -233,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: neutralGrey1,
+                        primary: neutralGrey1,
                       ),
                       onPressed: () {},
                       child: Row(
