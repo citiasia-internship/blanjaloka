@@ -18,7 +18,7 @@ class BerandaScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Align(
+             Align(
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.only(top: 15, right: 25),

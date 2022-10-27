@@ -115,6 +115,7 @@ class DetailScreen extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       // backgroundColor: primaryBlue6,
+                      primary : primaryBlue6,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),

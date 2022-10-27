@@ -18,7 +18,7 @@ class RegisterPageSuccess extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(
-                    height: 250,
+                    height: 100,
                   ),
                   Image.asset("asset/img/welcome.png"),
                   const SizedBox(
@@ -40,7 +40,7 @@ class RegisterPageSuccess extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: 150,
+                height: 50,
               ),
               Container(
                 width: 350,
