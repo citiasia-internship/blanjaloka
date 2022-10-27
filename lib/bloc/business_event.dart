@@ -12,7 +12,3 @@ class BusinessLoadingEvent extends BusinessEvents {
   List<Object?> get props => [];
 }
 
-class BusinessTimerStartEvent extends BusinessEvents {
-  final int duration;
-  const BusinessTimerStartEvent({required this.duration});
-}
