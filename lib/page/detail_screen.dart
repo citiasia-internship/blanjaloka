@@ -47,12 +47,9 @@ class DetailScreen extends StatelessWidget {
             color: Colors.black,
           ),
           elevation: 0,
-          title: const Text(
+          title: Text(
             'Detail Bisnis',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-            ),
+            style: titleList,
           ),
           titleSpacing: 0,
         ),
@@ -88,85 +85,13 @@ class DetailScreen extends StatelessWidget {
                   delegate: MyHeader(tabs),
                 ),
               ],
-              body: TabBarView(
+              body: const TabBarView(
                 children: [
-                  ListView(
-                    primary: false,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(24, 16, 24, 88),
-                    children: const [
-                      Text('Total investasi yang dibagikan'),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        '40%',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text('Waktu balik modal'),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        '12 - 24 bulan',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ListView(
-                    padding: const EdgeInsets.fromLTRB(24, 16, 24, 88),
-                    children: [
-                      Text(
-                        lorem(),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
-                  ),
-                  ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 88),
-                    itemCount: 3,
-                    itemBuilder: ((context, index) => ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          leading: Container(
-                            width: 42,
-                            height: 42,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: primaryBlue1,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            child: Image.asset(kategori['image'][index]),
-                          ),
-                          title: Padding(
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: Text(
-                              kategori['title'][index],
-                              style: const TextStyle(
-                                  color: Colors.black54, fontSize: 14),
-                            ),
-                          ),
-                          subtitle: Text(
-                            kategori['sub'][index],
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        )),
-                  ),
-                  const Text('asd'),
-                  const Text('asd'),
+                  Finansial(),
+                  TentangBisnis(),
+                  Kategori(kategori: kategori),
+                  Lokasi(),
+                  KalkulatorInvestasi(),
                 ],
               ),
             ),
@@ -212,6 +137,133 @@ class DetailScreen extends StatelessWidget {
   }
 }
 
+class KalkulatorInvestasi extends StatelessWidget {
+  const KalkulatorInvestasi({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text('asd');
+  }
+}
+
+class Lokasi extends StatelessWidget {
+  const Lokasi({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text('asd');
+  }
+}
+
+class Kategori extends StatelessWidget {
+  const Kategori({
+    Key? key,
+    required this.kategori,
+  }) : super(key: key);
+
+  final Map<String, dynamic> kategori;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 88),
+      itemCount: 3,
+      itemBuilder: ((context, index) => ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: Container(
+              width: 42,
+              height: 42,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: primaryBlue1,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+              child: Image.asset(kategori['image'][index]),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Text(
+                kategori['title'][index],
+                style: subtitle,
+              ),
+            ),
+            subtitle: Text(
+              kategori['sub'][index],
+              style: subtitleBold,
+            ),
+          )),
+    );
+  }
+}
+
+class TentangBisnis extends StatelessWidget {
+  const TentangBisnis({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 88),
+      children: [
+        Text(
+          lorem(),
+          textAlign: TextAlign.justify,
+          style: subtitle,
+        ),
+      ],
+    );
+  }
+}
+
+class Finansial extends StatelessWidget {
+  const Finansial({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 88),
+      children: [
+        Text(
+          'Total investasi yang dibagikan',
+          style: subtitle,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          '40%',
+          style: subtitleBold,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          'Waktu balik modal',
+          style: subtitle,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          '12 - 24 bulan',
+          style: subtitleBold,
+        ),
+      ],
+    );
+  }
+}
+
 class MyHeader extends SliverPersistentHeaderDelegate {
   final List<String> tabs;
 
@@ -220,26 +272,22 @@ class MyHeader extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    // TODO: implement build
     return Container(
       color: Colors.grey[50],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(24, 16, 24, 0),
+            padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Expanded(
+                Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.only(right: 12),
                     child: Text(
                       'Polo Clothes',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: titleList,
                       maxLines: 1,
                       overflow: TextOverflow.fade,
                       softWrap: false,
@@ -260,30 +308,26 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                     decoration: const BoxDecoration(border: Border()),
                     child: Text(
                       'Clothing',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: primaryBlue6,
-                      ),
+                      style: detailBadge,
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(24, 4, 24, 0),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 4, 24, 0),
             child: Text(
               'PT Polo Indonesia     ',
-              style: TextStyle(fontSize: 14),
+              style: subtitle,
               maxLines: 1,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(24, 12, 24, 0),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
             child: Text(
               'Jakarta',
-              style: TextStyle(fontSize: 14),
+              style: subtitle,
             ),
           ),
           Container(
@@ -296,26 +340,21 @@ class MyHeader extends SliverPersistentHeaderDelegate {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
                     'Rp 12.500.000',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: bigTitle,
                   ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
                     'dari target Rp 25.000.000',
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
+                    style: subtitle,
                   ),
                 ),
                 const SizedBox(
@@ -333,11 +372,11 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                 const SizedBox(
                   height: 16,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
                     '6 investor',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    style: subtitleBold,
                   ),
                 ),
               ],
@@ -354,6 +393,8 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                 labelColor: primaryBlue6,
                 indicatorColor: primaryBlue6,
                 padding: const EdgeInsets.symmetric(horizontal: 24),
+                labelStyle: selectedLabel,
+                unselectedLabelStyle: unselectedLabel,
                 isScrollable: true,
                 tabs: [
                   for (final tab in tabs)
@@ -370,10 +411,10 @@ class MyHeader extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 293;
+  double get maxExtent => 299;
 
   @override
-  double get minExtent => 293;
+  double get minExtent => 299;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
