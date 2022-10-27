@@ -122,14 +122,17 @@ OutlineInputBorder outlineInputBorder = OutlineInputBorder(
 
 var buttonSecondaryRegister = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-  padding: EdgeInsets.all(17),
+  padding: const EdgeInsets.all(17),
+  // backgroundColor: progressGrey,
   primary: progressGrey,
   side: BorderSide(color: neutralWhite),
 );
 
 var buttonPrimaryRegister = ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    padding: EdgeInsets.all(17),
-    primary: primaryBlue6);
-
-
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+  padding: const EdgeInsets.all(17),
+  // backgroundColor: primaryBlue6,
+);
+    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    // padding: EdgeInsets.all(17),
+    // primary: primaryBlue6)

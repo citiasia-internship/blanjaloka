@@ -162,6 +162,9 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+
+                        // backgroundColor: primaryBlue6,
+
                         primary: primaryBlue6,
                       ),
                       onPressed: () {
@@ -206,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        // backgroundColor: neutralGrey1,
                         primary: neutralGrey1,
                       ),
                       onPressed: () {},
@@ -232,6 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        // backgroundColor: neutralGrey1,
                         primary: neutralGrey1,
                       ),
                       onPressed: () {},

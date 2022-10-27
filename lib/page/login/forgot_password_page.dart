@@ -40,8 +40,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding:
-              const EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 20),
+          padding: EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 20),
           child: Column(
             children: [
               Container(
@@ -103,9 +102,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          // backgroundColor: primaryBlue6,
                           primary: primaryBlue6),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(forgotPasswordConfirmationRoute);
+                        Navigator.of(context)
+                            .pushNamed(forgotPasswordConfirmationRoute);
                         // if (_controller.count < 60) _controller.reset();
                         // _controller.startTimer();
                       },
