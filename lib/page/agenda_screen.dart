@@ -55,7 +55,7 @@ class AgendaScreen extends StatelessWidget {
                           onPressed: (){},
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            backgroundColor:
+                            primary:
                             agenda.agendaResult == "Waiting for approval!"
                                 ? Colors.red
                                 : agenda.agendaResult == "Dijadwalkan"

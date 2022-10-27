@@ -103,10 +103,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryBlue6),
+                          primary: primaryBlue6),
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(forgotPasswordConfirmationRoute);
+                        Navigator.of(context).pushNamed(forgotPasswordConfirmationRoute);
                         // if (_controller.count < 60) _controller.reset();
                         // _controller.startTimer();
                       },
