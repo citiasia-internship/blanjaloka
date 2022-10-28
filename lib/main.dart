@@ -9,6 +9,7 @@ import 'package:banjaloka/page/login/forgot_password_page.dart';
 import 'package:banjaloka/page/login/login_page.dart';
 import 'package:banjaloka/page/market_modal_screen.dart';
 import 'package:banjaloka/page/on-board.dart';
+import 'package:banjaloka/page/privacy_page.dart';
 import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/page/register/register_page_success.dart';
 import 'package:banjaloka/page/splashscreeen.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: SplashScreen.routeName,
+        initialRoute: Privasi.routeName,
         debugShowCheckedModeBanner: false,
         routes: {
           SplashScreen.routeName: (context) => SplashScreen(),
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           AgendaScreen.routeName: (context) => const AgendaScreen(),
           AccountScreen.routeName: (context) => const AccountScreen(),
           DetailScreen.routeName: (context) => const DetailScreen(),
+          Privasi.routeName:(context) => const Privasi(),
 
           //login
           loginRoute: (context) => const LoginPage(),
