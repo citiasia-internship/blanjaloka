@@ -12,6 +12,7 @@ Color neutralBlack = const Color(0xff181A1B);
 Color neutralGrey5 = const Color(0xff3E4041);
 Color neutralWhite = const Color(0xffffffff);
 Color progressGrey = const Color(0xffD9D9D9);
+Color semanticerror = const Color(0xffFF4348);
 
 //radius
 double defaultRadius = 10.0;

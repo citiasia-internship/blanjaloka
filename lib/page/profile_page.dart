@@ -12,9 +12,12 @@ class ProfilePage extends StatelessWidget {
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Stack(
-          alignment: Alignment.bottomLeft,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            const SizedBox(
+              height: 100.0,
+            ),
             Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 28.0,
@@ -31,7 +34,6 @@ class ProfilePage extends StatelessWidget {
                         //   Icons.person,
                         //   size: 100,
                         // ),
-
                         Image.asset(
                       "asset/img/accountProfile.png",
                       height: 100.0,
@@ -148,15 +150,15 @@ class ProfilePage extends StatelessWidget {
                           ItemProfile(
                             icon: Icon(
                               Icons.logout,
-                              color: primaryBlue6,
+                              color: semanticerror,
                             ),
                             label: "Keluar",
-                            color: primaryBlue6,
-                            colortext: primaryBlue6,
-                            coloricon: primaryBlue6,
+                            color: semanticerror,
+                            colortext: semanticerror,
+                            coloricon: semanticerror,
                           ),
                           const SizedBox(
-                            height: 15.0,
+                            height: 35.0,
                           ),
                         ],
                       )
