@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: Privasi.routeName,
+        initialRoute: Home.routeName,
         debugShowCheckedModeBanner: false,
         routes: {
           SplashScreen.routeName: (context) => SplashScreen(),
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           AgendaScreen.routeName: (context) => const AgendaScreen(),
           AccountScreen.routeName: (context) => const AccountScreen(),
           DetailScreen.routeName: (context) => const DetailScreen(),
-          Privasi.routeName:(context) => const Privasi(),
+          Privasi.routeName: (context) => const Privasi(),
 
           //login
           loginRoute: (context) => const LoginPage(),
