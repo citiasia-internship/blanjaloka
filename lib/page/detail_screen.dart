@@ -38,100 +38,102 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.grey[50],
-          iconTheme: const IconThemeData(
-            color: Colors.black,
-          ),
-          elevation: 0,
-          title: Text(
-            'Detail Bisnis',
-            style: titleList,
-          ),
-          titleSpacing: 0,
-        ),
-        body: Stack(
-          children: [
-            NestedScrollView(
-              headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-                SliverAppBar(
-                  pinned: false,
-                  snap: false,
-                  floating: false,
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.transparent,
-                  expandedHeight: 200,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: CarouselSlider.builder(
-                      options: CarouselOptions(
-                        height: 200,
-                        pageSnapping: true,
-                        viewportFraction: 1,
-                      ),
-                      itemCount: images.length,
-                      itemBuilder: (context, index, realIndex) =>
-                          CarouselImages(
-                        index: index,
-                        images: images,
-                      ),
-                    ),
-                  ),
-                ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: MyHeader(tabs),
-                ),
-              ],
-              body: const TabBarView(
-                children: [
-                  Finansial(),
-                  TentangBisnis(),
-                  Kategori(kategori: kategori),
-                  Lokasi(),
-                  KalkulatorInvestasi(),
-                ],
-              ),
+    return SafeArea(
+      child: DefaultTabController(
+        length: tabs.length,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.grey[50],
+            iconTheme: const IconThemeData(
+              color: Colors.black,
             ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                height: 72,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.grey[50],
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 1.0),
-                      blurRadius: 3,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      // backgroundColor: primaryBlue6,
-                      primary : primaryBlue6,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+            elevation: 0,
+            title: Text(
+              'Detail Bisnis',
+              style: titleList,
+            ),
+            titleSpacing: 0,
+          ),
+          body: Stack(
+            children: [
+              NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+                  SliverAppBar(
+                    pinned: false,
+                    snap: false,
+                    floating: false,
+                    automaticallyImplyLeading: false,
+                    backgroundColor: Colors.transparent,
+                    expandedHeight: 200,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: CarouselSlider.builder(
+                        options: CarouselOptions(
+                          height: 200,
+                          pageSnapping: true,
+                          viewportFraction: 1,
+                        ),
+                        itemCount: images.length,
+                        itemBuilder: (context, index, realIndex) =>
+                            CarouselImages(
+                          index: index,
+                          images: images,
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'Ajukan Agenda',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    onPressed: () {},
                   ),
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: MyHeader(tabs),
+                  ),
+                ],
+                body: const TabBarView(
+                  children: [
+                    Finansial(),
+                    TentangBisnis(),
+                    Kategori(kategori: kategori),
+                    Lokasi(),
+                    KalkulatorInvestasi(),
+                  ],
                 ),
               ),
-            )
-          ],
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  height: 72,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[50],
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0),
+                        blurRadius: 3,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        // backgroundColor: primaryBlue6,
+                        primary: primaryBlue6,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Ajukan Agenda',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
