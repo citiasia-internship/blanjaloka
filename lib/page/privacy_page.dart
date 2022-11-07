@@ -1,3 +1,4 @@
+import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/text/privasi_text.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _PrivasiState extends State<Privasi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -28,7 +30,7 @@ class _PrivasiState extends State<Privasi> {
         ),
         title: Text(
           "Kebijakan Privasi",
-          style: textButton,
+          style: textButton.copyWith(color: Colors.black),
         ),
         // backgroundColor: ColorBlanjaloka.backgroundColor,
       ),
@@ -158,7 +160,9 @@ class _PrivasiState extends State<Privasi> {
                           primary: primaryBlue6,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, RegisterPage.routeName)
+                      },
                       child: Text(
                         "Lanjutkan",
                         style: TextStyle(
