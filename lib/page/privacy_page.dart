@@ -1,3 +1,4 @@
+import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/text/privasi_text.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,19 @@ class _PrivasiState extends State<Privasi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, RegisterPage.routeName);
           },
           icon: const Icon(
             Icons.arrow_back,
-            // color: ColorBlanjaloka.blackColor,
+            color: Colors.black,
           ),
         ),
         title: Text(
           "Kebijakan Privasi",
-          style: textButton,
+          style: TextStyle(color: Colors.black),
         ),
         // backgroundColor: ColorBlanjaloka.backgroundColor,
       ),
@@ -140,11 +142,11 @@ class _PrivasiState extends State<Privasi> {
                         });
                       },
                     ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
+                    // const SizedBox(
+                    //   width: 5.0,
+                    // ),
                     const Text(
-                        "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.")
+                        "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.", style: TextStyle(fontSize: 13),)
                   ],
                 ),
                 const SizedBox(

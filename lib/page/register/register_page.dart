@@ -1,8 +1,9 @@
-import 'package:banjaloka/page/register/register_page_success.dart';
+import 'package:banjaloka/page/privacy_page.dart';
 import 'package:banjaloka/page/welcome_page.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
         shadowColor: const Color.fromARGB(255, 237, 239, 237),
         title: const Text(
           'Daftar',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
         ),
         automaticallyImplyLeading: true,
       ),
@@ -187,52 +188,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   isDense: true,
                 )),
-                Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          checkColor: Colors.white,
-                          fillColor:
-                              MaterialStateProperty.resolveWith(getColor),
-                          value: obscureValue,
-                          onChanged: (value) {
-                            setState(() {
-                              obscureValue = value!;
-                            });
-                          },
-                        ),
-                        Container(
-                          child: Column(
-                            children: [
-                              const Text(
-                                "Dengan mendaftar anda mengerti dan menyetujui",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Kebijakan Privasi",
-                                    style: TextStyle(
-                                        fontSize: 12, color: primaryBlue6),
-                                  ),
-                                  const Text(
-                                    "dari aplikasi kami.",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, RegisterPageSuccess.routeName);
+                    Navigator.pushReplacementNamed(context, Privasi.routeName);
                   },
                   child: const Text("Daftar"),
                   style: buttonPrimaryRegister,
