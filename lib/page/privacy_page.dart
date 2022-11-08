@@ -21,16 +21,16 @@ class _PrivasiState extends State<Privasi> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, RegisterPage.routeName);
           },
           icon: const Icon(
             Icons.arrow_back,
-            // color: ColorBlanjaloka.blackColor,
+            color: Colors.black,
           ),
         ),
         title: Text(
           "Kebijakan Privasi",
-          style: textButton.copyWith(color: Colors.black),
+          style: TextStyle(color: Colors.black),
         ),
         // backgroundColor: ColorBlanjaloka.backgroundColor,
       ),
@@ -142,11 +142,11 @@ class _PrivasiState extends State<Privasi> {
                         });
                       },
                     ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
+                    // const SizedBox(
+                    //   width: 5.0,
+                    // ),
                     const Text(
-                        "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.")
+                      "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.", style: TextStyle(fontSize: 13),)
                   ],
                 ),
                 const SizedBox(
@@ -160,9 +160,7 @@ class _PrivasiState extends State<Privasi> {
                           primary: primaryBlue6,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, RegisterPage.routeName) ;
-                      },
+                      onPressed: () {},
                       child: Text(
                         "Lanjutkan",
                         style: TextStyle(
