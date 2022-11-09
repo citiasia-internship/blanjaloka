@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           loginRoute: (context) => const LoginPage(),
           forgotPasswordRoute: (context) => const ForgotPasswordPage(),
           forgotPasswordConfirmationRoute: (context) =>
-              const ForgotPaawordConfirmationPage(),
+              const ForgotPasswordConfirmationPage(),
 
           // register route
           RegisterPage.routeName: (context) => const RegisterPage(),
