@@ -12,6 +12,7 @@ Color neutralBlack = const Color(0xff181A1B);
 Color neutralGrey5 = const Color(0xff3E4041);
 Color neutralWhite = const Color(0xffffffff);
 Color progressGrey = const Color(0xffD9D9D9);
+Color semanticerror = const Color(0xffFF4348);
 
 //radius
 double defaultRadius = 10.0;
@@ -124,11 +125,15 @@ var buttonSecondaryRegister = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
   padding: const EdgeInsets.all(17),
   // backgroundColor: progressGrey,
+  primary: progressGrey,
   side: BorderSide(color: neutralWhite),
 );
 
 var buttonPrimaryRegister = ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    padding: const EdgeInsets.all(17),
-    // backgroundColor: primaryBlue6
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+  padding: const EdgeInsets.all(17),
+  // backgroundColor: primaryBlue6,
 );
+    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    // padding: EdgeInsets.all(17),
+    // primary: primaryBlue6)

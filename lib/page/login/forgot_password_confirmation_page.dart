@@ -28,7 +28,7 @@ class _ForgotPaawordConfirmationPageState
               const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
           child: Column(
             children: [
-              SvgPicture.asset('asset/img/mail_sent.svg'),
+              Image.asset('asset/img/mailsent.png'),
               const SizedBox(height: 30),
               Text(
                 "Link telah terkirim!",

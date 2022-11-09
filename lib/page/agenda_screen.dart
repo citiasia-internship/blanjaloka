@@ -33,7 +33,7 @@ class AgendaScreen extends StatelessWidget {
                           ? Colors.amber
                           : Colors.green,
               child: Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 color: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -55,7 +55,7 @@ class AgendaScreen extends StatelessWidget {
                           onPressed: (){},
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            backgroundColor:
+                            primary:
                             agenda.agendaResult == "Waiting for approval!"
                                 ? Colors.red
                                 : agenda.agendaResult == "Dijadwalkan"
