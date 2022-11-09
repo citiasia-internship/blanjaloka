@@ -18,13 +18,20 @@ class BerandaScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Notification
              Align(
               alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(top: 15, right: 25),
-                child: Icon(
-                  Icons.notifications_outlined,
-                  size: 32,
+              child: SizedBox.fromSize(
+                size: Size(58,58),
+                child: InkWell(
+                  splashColor: Colors.grey,
+                  onTap: () {},
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.notifications_outlined, size: 32,)
+                    ],
+                  ),
                 ),
               ),
             ),
