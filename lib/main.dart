@@ -8,6 +8,7 @@ import 'package:banjaloka/page/login/forgot_password_confirmation_page.dart';
 import 'package:banjaloka/page/login/forgot_password_page.dart';
 import 'package:banjaloka/page/login/login_page.dart';
 import 'package:banjaloka/page/market_modal_screen.dart';
+import 'package:banjaloka/page/notification_page.dart';
 import 'package:banjaloka/page/on-board.dart';
 import 'package:banjaloka/page/privacy_page.dart';
 import 'package:banjaloka/page/register/register_page.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           AccountScreen.routeName: (context) => const AccountScreen(),
           DetailScreen.routeName: (context) => const DetailScreen(),
           Privasi.routeName: (context) => const Privasi(),
+          NotificationPage.routeName: (context) => const NotificationPage(),
 
           //login
           loginRoute: (context) => const LoginPage(),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'beranda_screen.dart';
 import 'market_modal_screen.dart';
+import 'notification_page.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -48,6 +49,31 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          SizedBox.fromSize(
+            size: Size(58,58),
+            child: InkWell(
+              splashColor: Colors.grey,
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage())
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.notifications_outlined,
+                    size: 32,
+                    color: Colors.black,)
+                ],
+              ),
+            ),
+          ),
+        ],
+        elevation: 0,
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.white,
+      ),
       body: _pages![_selectedPageIndex]['pages'],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
