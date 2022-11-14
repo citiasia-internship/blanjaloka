@@ -282,7 +282,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-
 //  PROFILE REDISIGN 1
 
 // import 'package:banjaloka/theme/theme.dart';
