@@ -28,7 +28,7 @@ class _PrivasiState extends State<Privasi> {
             color: Colors.black,
           ),
         ),
-        title: Text(
+        title: const Text(
           "Kebijakan Privasi",
           style: TextStyle(color: Colors.black),
         ),
@@ -146,7 +146,9 @@ class _PrivasiState extends State<Privasi> {
                     //   width: 5.0,
                     // ),
                     const Text(
-                        "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.", style: TextStyle(fontSize: 13),)
+                      "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.",
+                      style: TextStyle(fontSize: 13),
+                    )
                   ],
                 ),
                 const SizedBox(
