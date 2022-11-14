@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class ItemProfile extends StatelessWidget {
   ItemProfile({Key? key, this.icon, this.label, this.color, this.colorArrow})
       : super(key: key);
-
   String? label;
   Icon? icon;
   Color? color;
