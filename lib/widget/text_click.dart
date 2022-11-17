@@ -1,7 +1,7 @@
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+// ignore: must_be_immutablee
 class TextClick extends StatelessWidget {
   TextClick({
     Key? key,
