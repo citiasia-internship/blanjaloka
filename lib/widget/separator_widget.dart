@@ -12,7 +12,7 @@ class Separator extends StatelessWidget {
         Expanded(
           child: Divider(
             height: 1,
-            thickness: 2,
+            thickness: 1,
             indent: 45,
             endIndent: 15,
             color: neutralGrey4,
@@ -25,7 +25,7 @@ class Separator extends StatelessWidget {
         Expanded(
           child: Divider(
             height: 1,
-            thickness: 2,
+            thickness: 1,
             indent: 15,
             endIndent: 45,
             color: neutralGrey4,

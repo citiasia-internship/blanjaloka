@@ -3,12 +3,17 @@ import 'package:banjaloka/page/account_screen.dart';
 import 'package:banjaloka/page/agenda_screen.dart';
 import 'package:banjaloka/page/beranda_screen.dart';
 import 'package:banjaloka/page/detail_screen.dart';
+import 'package:banjaloka/page/edit_pass.dart';
+import 'package:banjaloka/page/edit_profile.dart';
 import 'package:banjaloka/page/home_page.dart';
+import 'package:banjaloka/page/info_account_page.dart';
+import 'package:banjaloka/page/list_edit_profile.dart';
 import 'package:banjaloka/page/login/forgot_password_confirmation_page.dart';
 import 'package:banjaloka/page/login/forgot_password_page.dart';
 import 'package:banjaloka/page/login/login_page.dart';
 import 'package:banjaloka/page/market_modal_screen.dart';
 import 'package:banjaloka/page/on-board.dart';
+import 'package:banjaloka/page/privacy_page.dart';
 import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/page/register/register_page_success.dart';
 import 'package:banjaloka/page/splashscreeen.dart';
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: SplashScreen.routeName,
+        initialRoute: Home.routeName,
         debugShowCheckedModeBanner: false,
         routes: {
           SplashScreen.routeName: (context) => SplashScreen(),
@@ -38,6 +43,14 @@ class MyApp extends StatelessWidget {
           AgendaScreen.routeName: (context) => const AgendaScreen(),
           AccountScreen.routeName: (context) => const AccountScreen(),
           DetailScreen.routeName: (context) => const DetailScreen(),
+          Privasi.routeName: (context) => const Privasi(),
+          InfoAccount.routeName: (context) => const InfoAccount(),
+
+          // Profile
+
+          ListEditProfile.routeName: (context) => const ListEditProfile(),
+          EditProfilePage.routeName: (context) => const EditProfilePage(),
+          Editpass.routeName: (context) => const Editpass(),
 
           //login
           loginRoute: (context) => const LoginPage(),
