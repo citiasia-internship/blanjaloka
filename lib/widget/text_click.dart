@@ -21,6 +21,7 @@ class TextClick extends StatelessWidget {
         child: Text(
           text!,
           style: bigTitle.copyWith(
+            color: primaryBlue7,
             fontSize: size,
           ),
         ));
