@@ -1,9 +1,14 @@
+import 'package:banjaloka/page/edit_pass.dart';
+import 'package:banjaloka/page/info_account_page.dart';
+import 'package:banjaloka/page/list_edit_profile.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/item_profile.dart';
 import 'package:banjaloka/widget/separator_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
+  static const routeName = "/profile";
+
   const ProfilePage({super.key});
 
   @override
@@ -41,10 +46,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: 232.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Nabila Alifa"),
+                    children: [
+                      const Text("Nabila Alifa"),
                       Icon(
                         Icons.drive_file_rename_outline,
+                        color: primaryBlue7,
                         size: 20.0,
                       ),
                     ],
@@ -120,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             InkWell(
               onTap: () {
-                // Navigator.pushNamed(context, RouteBlanjaloka.editprofile);
+                Navigator.pushNamed(context, ListEditProfile.routeName);
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 28.0),
@@ -132,10 +138,39 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ItemProfile(
                       icon: Icon(
-                        Icons.settings,
+                        Icons.alternate_email,
                         color: neutralGrey4,
                       ),
-                      label: "Pengatura Akun",
+                      label: "Informasi Akun",
+                      color: neutralGrey4,
+                      colorArrow: neutralGrey4,
+                    ),
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+                    const Separator2(),
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, Editpass.routeName);
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 28.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+                    ItemProfile(
+                      icon: Icon(
+                        Icons.password,
+                        color: neutralGrey4,
+                      ),
+                      label: "Ubah Kata Sansi",
                       color: neutralGrey4,
                       colorArrow: neutralGrey4,
                     ),
@@ -159,37 +194,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ItemProfile(
                       icon: Icon(
-                        Icons.language,
+                        Icons.help_outline_sharp,
                         color: neutralGrey4,
                       ),
-                      label: "Pengaturan Bahasa",
-                      color: neutralGrey4,
-                      colorArrow: neutralGrey4,
-                    ),
-                    const SizedBox(
-                      height: 15.0,
-                    ),
-                    const Separator2(),
-                  ],
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 28.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 15.0,
-                    ),
-                    ItemProfile(
-                      icon: Icon(
-                        Icons.help,
-                        color: neutralGrey4,
-                      ),
-                      label: "Paling Banyak Ditanyakan",
+                      label: "Bantuan",
                       color: neutralGrey4,
                       colorArrow: neutralGrey4,
                     ),

@@ -4,6 +4,8 @@ import 'package:banjaloka/widget/input_pass.dart';
 import 'package:flutter/material.dart';
 
 class Editpass extends StatefulWidget {
+  static const routeName = "/editpass";
+
   const Editpass({super.key});
 
   @override
@@ -100,7 +102,7 @@ class _EditpassState extends State<Editpass> {
                                       textAlign: TextAlign.center,
                                     ),
                                     Image.asset(
-                                      "assets/img/success.png",
+                                      "asset/img/success.png",
                                       height: 160.0,
                                       width: 180.0,
                                     )

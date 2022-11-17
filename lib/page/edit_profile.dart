@@ -6,6 +6,7 @@ import 'package:banjaloka/widget/text_click.dart';
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatefulWidget {
+  static const routeName = "/editprofile";
   const EditProfilePage({super.key});
 
   @override
@@ -27,7 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
         ),
         title: Text(
-          "Masuk",
+          "Ubah Profil Saya",
           style: bigTitle.copyWith(
             fontSize: 20.0,
           ),
@@ -53,11 +54,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         height: 75.0,
                         width: 75.0,
                         decoration: BoxDecoration(
-                          color: neutralWhite,
+                          // color: neutralWhite,
                           borderRadius: BorderRadius.circular(50.0),
                           image: const DecorationImage(
                             image: AssetImage(
-                              "assets/img/accountProfile.png",
+                              "asset/img/accountProfile.png",
                             ),
                           ),
                         ),
@@ -81,7 +82,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               child: Container(
                 width: double.infinity,
                 height: 509.0,
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   color: neutralWhite,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(15.0),

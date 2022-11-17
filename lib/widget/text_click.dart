@@ -1,7 +1,7 @@
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+// ignore: must_be_immutablee
 class TextClick extends StatelessWidget {
   TextClick({
     Key? key,
@@ -21,6 +21,7 @@ class TextClick extends StatelessWidget {
         child: Text(
           text!,
           style: bigTitle.copyWith(
+            color: primaryBlue7,
             fontSize: size,
           ),
         ));
