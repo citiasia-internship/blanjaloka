@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //for color
+Color primaryBlue3 = const Color.fromARGB(255, 215, 232, 241);
 Color primaryBlue6 = const Color(0xff398AB9);
 Color primaryBlue7 = const Color(0xff2F739A);
 Color primaryBlue1 = const Color(0xffF2F7FA);
