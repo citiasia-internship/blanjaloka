@@ -40,7 +40,7 @@ class WelcomePage extends StatelessWidget {
               // BUTTON MASUK
               GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, loginRoute);
+                    Navigator.of(context).pushNamed(loginRoute);
                   },
                   child: costumeButtonFill('Masuk')),
               const SizedBox(
@@ -55,8 +55,7 @@ class WelcomePage extends StatelessWidget {
               // BUTTON DAFTAR
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RegisterPage.routeName);
+                  Navigator.pushNamed(context, RegisterPage.routeName);
                 },
                 child: costumeButtonBorder('Daftar'),
               ),

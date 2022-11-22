@@ -1,20 +1,33 @@
+import 'package:banjaloka/bloc/timer/timer_bloc.dart';
 import 'package:banjaloka/theme/theme.dart';
+import 'package:banjaloka/widget/ticker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ForgotPaawordConfirmationPage extends StatefulWidget {
-  const ForgotPaawordConfirmationPage({super.key});
+class ForgotPasswordConfirmationPage extends StatelessWidget {
+  const ForgotPasswordConfirmationPage({super.key});
 
-  @override
-  State<ForgotPaawordConfirmationPage> createState() =>
-      _ForgotPaawordConfirmationPageState();
-}
-
-class _ForgotPaawordConfirmationPageState
-    extends State<ForgotPaawordConfirmationPage> {
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => TimerBloc(ticker: const Ticker()),
+        child: const ForgotPasswordConfirmationView());
+  }
+}
+
+class ForgotPasswordConfirmationView extends StatelessWidget {
+  const ForgotPasswordConfirmationView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final args = (ModalRoute.of(context)?.settings.arguments ??
+        Map<String, dynamic>) as Map;
+    final duration = context.select((TimerBloc bloc) => bloc.state.duration);
+    final minutesStr =
+        ((duration / 60) % 60).floor().toString().padLeft(2, '0');
+    final secondsStr = (duration % 60).toString().padLeft(2, '0');
+
     return Scaffold(
       backgroundColor: neutralWhite,
       appBar: AppBar(
@@ -38,7 +51,7 @@ class _ForgotPaawordConfirmationPageState
               Expanded(
                 flex: 0,
                 child: Text(
-                  "Kami telah mengirimkan link untuk mengatur kata sandi baru ke alamat email email@gmail.com",
+                  "Kami telah mengirimkan link untuk mengatur kata sandi baru ke alamat email ${args['emailOrPhone']}",
                   textAlign: TextAlign.center,
                   style: fontProfile,
                 ),
@@ -50,43 +63,49 @@ class _ForgotPaawordConfirmationPageState
                 color: neutralGrey3,
               ),
               const SizedBox(height: 25),
-              // Expanded(
-              //     flex: 0,
-              //     child: GetBuilder<ForgotPasswordConfirmationPageController>(
-              //         builder: (builder) {
-              //       return (_controller.count != 0)
-              //           ? Text(
-              //               "Belum dapat link? Kirim ulang dalam ${_controller.count} detik",
-              //               textAlign: TextAlign.center,
-              //               style: fontProfile,
-              //             )
-              //           : Expanded(
-              //               flex: 0,
-              //               child: RichText(
-              //                 text: TextSpan(
-              //                   text: 'Belum dapat link? ',
-              //                   style: fontProfile,
-              //                   children: <TextSpan>[
-              //                     TextSpan(
-              //                         text: 'Kirim Ulang ',
-              //                         recognizer: TapGestureRecognizer()
-              //                           ..onTap = () {
-              //                             _controller.reset();
-              //                             _controller.startTimer();
-              //                           },
-              //                         style: selectedLabel),
-              //                     TextSpan(text: 'atau ', style: fontProfile),
-              //                     TextSpan(
-              //                         text: 'Ganti Email',
-              //                         style: selectedLabel,
-              //                         recognizer: TapGestureRecognizer()
-              //                           ..onTap = () {
-              //                             _controller.reset();
-              //                           }),
-              //                   ],
-              //                 ),
-              //               ));
-              //     })),
+              Expanded(
+                flex: 0,
+                child: BlocBuilder<TimerBloc, TimerState>(
+                  builder: (context, state) {
+                    context
+                        .read<TimerBloc>()
+                        .add(TimerStarted(duration: state.duration));
+                    return (secondsStr != "00")
+                        ? Text(
+                            "Belum dapat link? Kirim ulang dalam $minutesStr:$secondsStr detik",
+                            textAlign: TextAlign.center,
+                            style: fontProfile,
+                          )
+                        : RichText(
+                            text: TextSpan(
+                              text: 'Belum dapat link? ',
+                              style: fontProfile,
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Kirim Ulang ',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      context
+                                          .read<TimerBloc>()
+                                          .add(const TimerReset());
+                                    },
+                                  style: selectedLabel,
+                                ),
+                                TextSpan(text: 'atau ', style: fontProfile),
+                                TextSpan(
+                                  text: 'Ganti Email',
+                                  style: selectedLabel,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.of(context).pop();
+                                    },
+                                ),
+                              ],
+                            ),
+                          );
+                  },
+                ),
+              ),
             ],
           ),
         ),

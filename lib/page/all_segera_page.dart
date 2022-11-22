@@ -31,17 +31,17 @@ class AllSoonItem extends StatelessWidget {
               List<Business> business = state.business ;
               return  Padding(
                 padding: EdgeInsets.all(20),
-                child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 3 / 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20),
-                    itemCount: business.length,
-                    itemBuilder: (context, index) {
-                      return buildContentSegera(context, business[index].image[0], business[index].judul, business[index].price);
-                    }
-                ),
+                // child: GridView.builder(
+                //     gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                //         maxCrossAxisExtent: 200,
+                //         childAspectRatio: 3 / 2,
+                //         crossAxisSpacing: 20,
+                //         mainAxisSpacing: 20),
+                //     itemCount: business.length,
+                //     itemBuilder: (context, index) {
+                //       return buildContentSegera(context, business[index].image[0], business[index].judul, business[index].price);
+                //     }
+                // ),
               ) ;
             } else if (state is BusinessErrorState ) {
               return Text('eror') ;

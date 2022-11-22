@@ -31,24 +31,24 @@ class AllNowItem extends StatelessWidget {
             return  Scaffold(
               appBar:buildAppBar(context, 'Pendanaan Berlangsung'),
               body: Container(
-                child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 3 / 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20),
-                    itemCount: business.length,
-                    itemBuilder: (context, index) {
-                      return buildContentPendanaan(
-                          context,
-                          business[index].image[0],
-                          business[index].judul,
-                          business[index].price,
-                          '${business[index].nilaiBisnis} %' ,
-                          business[index].valueProgressbar
-                      );
-                    }
-                ),
+                // child: GridView.builder(
+                //     gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                //         maxCrossAxisExtent: 200,
+                //         childAspectRatio: 3 / 2,
+                //         crossAxisSpacing: 20,
+                //         mainAxisSpacing: 20),
+                //     itemCount: business.length,
+                //     itemBuilder: (context, index) {
+                //       // return buildContentPendanaan(
+                //       //     context,
+                //       //     business[index].image[0],
+                //       //     // business[index].judul,
+                //       //     // business[index].price,
+                //       //     // '${business[index].nilaiBisnis} %' ,
+                //       //     // business[index].valueProgressbar
+                //       // );
+                //     }
+                // ),
               ),
             ) ;
           } else if (state is BusinessErrorState ) {

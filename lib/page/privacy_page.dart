@@ -28,7 +28,7 @@ class _PrivasiState extends State<Privasi> {
             color: Colors.black,
           ),
         ),
-        title: Text(
+        title: const Text(
           "Kebijakan Privasi",
           style: TextStyle(color: Colors.black),
         ),

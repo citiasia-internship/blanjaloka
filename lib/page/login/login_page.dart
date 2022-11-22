@@ -1,8 +1,14 @@
+import 'package:banjaloka/bloc/auth/bloc/auth_bloc.dart';
+import 'package:banjaloka/bloc/auth/bloc/auth_event.dart';
+import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/constants/routes.dart';
 import 'package:banjaloka/page/home_page.dart';
+import 'package:banjaloka/respository/bussines_repo.dart';
 import 'package:banjaloka/theme/theme.dart';
+import 'package:banjaloka/widget/loading/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,7 +20,32 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  late final String accessToken;
   bool _obsText = true;
+  bool _emailOrPasswordIsEmpty = true;
+  bool _emailError = false;
+  bool _passwordError = false;
+  String? _emailErrorText;
+  String? _passwordErrorText;
+
+  void _textControllerListener() {
+    _emailError = false;
+    _emailErrorText = null;
+    if (_email.text.isNotEmpty && _password.text.isNotEmpty) {
+      _emailOrPasswordIsEmpty = false;
+      setState(() {});
+    } else {
+      _emailOrPasswordIsEmpty = true;
+      setState(() {});
+    }
+  }
+
+  void _setupTextControllerListener() {
+    _email.removeListener(_textControllerListener);
+    _email.addListener(_textControllerListener);
+    _password.removeListener(_textControllerListener);
+    _password.addListener(_textControllerListener);
+  }
 
   @override
   void initState() {
@@ -32,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    _setupTextControllerListener();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -73,13 +105,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: 52,
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 17),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelText: "Masukkan email atau nomor telepon anda",
                     labelStyle: unselectedLabel,
+                    errorText: _emailError ? _emailErrorText : null,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(defaultRadius),
                     ),
@@ -92,7 +126,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   obscureText: false,
                   maxLines: 1,
-                  onChanged: (value) {},
                   controller: _email,
                 ),
               ),
@@ -126,8 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        Icons.visibility,
-                        // : Icons.visibility_off,
+                        !_obsText ? Icons.visibility : Icons.visibility_off,
                         color: primaryBlue6,
                       ),
                       onPressed: () {
@@ -136,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                   ),
-                  obscureText: true,
+                  obscureText: _obsText,
                   maxLines: 1,
                   controller: _password,
                 ),
@@ -162,14 +194,40 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-
-                        // backgroundColor: primaryBlue6,
-
-                        primary: primaryBlue6,
+                        primary: _emailOrPasswordIsEmpty
+                            ? primaryBlue3
+                            : primaryBlue6,
                       ),
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context, Home.routeName, (route) => false);
-                      },
+                      onPressed: _emailOrPasswordIsEmpty
+                          ? () {}
+                          : () {
+                              final email = _email.text;
+                              final password = _password.text;
+                              BusinessRepositories()
+                                  .login(email, password)
+                                  .then((value) async {
+                                try {
+                                  if (value == 401) {
+                                    _emailError = true;
+                                    _emailErrorText =
+                                        "Email atau password salah";
+                                    setState(() {});
+                                  } else if (value.accessToken != null) {
+                                    String accessToken = value.accessToken!;
+                                    SharedPreferences pref =
+                                        await SharedPreferences.getInstance();
+                                    pref.setString("access_token", accessToken);
+                                    if (!mounted) return;
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                            Home.routeName, (route) => false);
+                                  }
+                                } on Exception catch (_) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("Error")));
+                                }
+                              });
+                            },
                       child: Text(
                         "Masuk",
                         style: textButton,
@@ -209,7 +267,6 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        // backgroundColor: neutralGrey1,
                         primary: neutralGrey1,
                       ),
                       onPressed: () {},
@@ -217,10 +274,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('asset/img/Google.svg'),
-                          Text(
-                            "  Google",
-                            style: textButtonBlack,
-                          ),
+                          Text("  Google", style: textButtonBlack),
                         ],
                       ),
                     ),
@@ -236,7 +290,6 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        // backgroundColor: neutralGrey1,
                         primary: neutralGrey1,
                       ),
                       onPressed: () {},
@@ -244,10 +297,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('asset/img/Facebook.svg'),
-                          Text(
-                            "  Facebook",
-                            style: textButtonBlack,
-                          ),
+                          Text("  Facebook", style: textButtonBlack),
                         ],
                       ),
                     ),
@@ -262,10 +312,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text("Belum punya akun?", style: fontProfile),
                     GestureDetector(
                         onTap: () {},
-                        child: Text(
-                          " Daftar disini",
-                          style: selectedLabel,
-                        ))
+                        child: Text(" Daftar disini", style: selectedLabel))
                   ],
                 ),
               ),
@@ -274,5 +321,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+    ;
   }
 }
