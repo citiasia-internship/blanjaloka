@@ -19,7 +19,7 @@ class LoadingBusinessState extends BusinessState {
 
 class BusinessStateLoaded extends BusinessState {
   // karena disini itu udah ada data yang akan muncul , maka kita buat constrcutor untuk datanya
-  final List<Business> business;
+  final List<BussinesSoon> business;
 
   BusinessStateLoaded(this.business);
 

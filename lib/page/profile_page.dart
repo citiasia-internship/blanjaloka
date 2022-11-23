@@ -110,9 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         backgroundColor: neutralWhite,
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+      body: SingleChildScrollView(
         child: Column(
           children: [
             // Section 1

@@ -1,10 +1,11 @@
+
 import 'package:banjaloka/bloc/auth/bloc/auth_bloc.dart';
 import 'package:banjaloka/bloc/business_bloc.dart';
-import 'package:banjaloka/bloc/business_event.dart';
-import 'package:banjaloka/bloc/business_state.dart';
 import 'package:banjaloka/constants/routes.dart';
 import 'package:banjaloka/page/account_screen.dart';
 import 'package:banjaloka/page/agenda_screen.dart';
+import 'package:banjaloka/page/all_pendanaan_page.dart';
+import 'package:banjaloka/page/all_segera_page.dart';
 import 'package:banjaloka/page/beranda_screen.dart';
 import 'package:banjaloka/page/detail_screen.dart';
 import 'package:banjaloka/page/edit_pass.dart';
@@ -26,8 +27,11 @@ import 'package:banjaloka/respository/bussines_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/business_event.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(
+      MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: OnBoardingPage.routeName,
+      initialRoute: Home.routeName,
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),
@@ -51,6 +55,10 @@ class MyApp extends StatelessWidget {
         DetailScreen.routeName: (context) => const DetailScreen(),
         Privasi.routeName: (context) => const Privasi(),
         InfoAccount.routeName: (context) => const InfoAccount(),
+
+        //item soon dan danan
+        AllNowItem.allPendanaanItemRoute : (context) => AllNowItem(),
+        AllSoonItem.allSoonItemRoute : (context) => const AllSoonItem(),
 
         // Profile
 

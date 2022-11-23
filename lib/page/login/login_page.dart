@@ -194,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: _emailOrPasswordIsEmpty
+                        primary: _emailOrPasswordIsEmpty
                             ? primaryBlue3
                             : primaryBlue6,
                       ),
@@ -267,7 +267,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: neutralGrey1,
+                        primary: neutralGrey1,
                       ),
                       onPressed: () {},
                       child: Row(
@@ -290,7 +290,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: neutralGrey1,
+                        primary: neutralGrey1,
                       ),
                       onPressed: () {},
                       child: Row(
