@@ -1,4 +1,3 @@
-
 import 'package:banjaloka/bloc/auth/bloc/auth_bloc.dart';
 import 'package:banjaloka/bloc/business_bloc.dart';
 import 'package:banjaloka/constants/routes.dart';
@@ -30,8 +29,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/business_event.dart';
 
 void main() {
-  runApp(
-      MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -57,11 +55,10 @@ class MyApp extends StatelessWidget {
         InfoAccount.routeName: (context) => const InfoAccount(),
 
         //item soon dan danan
-        AllNowItem.allPendanaanItemRoute : (context) => AllNowItem(),
-        AllSoonItem.allSoonItemRoute : (context) => const AllSoonItem(),
+        AllNowItem.allPendanaanItemRoute: (context) => const AllNowItem(),
+        AllSoonItem.allSoonItemRoute: (context) => const AllSoonItem(),
 
         // Profile
-
         ListEditProfile.routeName: (context) => const ListEditProfile(),
         EditProfilePage.routeName: (context) => const EditProfilePage(),
         Editpass.routeName: (context) => const Editpass(),
