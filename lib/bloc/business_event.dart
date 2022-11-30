@@ -11,4 +11,3 @@ class BusinessLoadingEvent extends BusinessEvents {
   // TODO: implement props
   List<Object?> get props => [];
 }
-

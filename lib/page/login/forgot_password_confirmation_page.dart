@@ -1,4 +1,4 @@
-import 'package:banjaloka/bloc/timer/bloc/timer_bloc.dart';
+import 'package:banjaloka/bloc/timer/timer_bloc.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/ticker.dart';
 import 'package:flutter/gestures.dart';
@@ -21,6 +21,8 @@ class ForgotPasswordConfirmationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = (ModalRoute.of(context)?.settings.arguments ??
+        Map<String, dynamic>) as Map;
     final duration = context.select((TimerBloc bloc) => bloc.state.duration);
     final minutesStr =
         ((duration / 60) % 60).floor().toString().padLeft(2, '0');
@@ -49,7 +51,7 @@ class ForgotPasswordConfirmationView extends StatelessWidget {
               Expanded(
                 flex: 0,
                 child: Text(
-                  "Kami telah mengirimkan link untuk mengatur kata sandi baru ke alamat email email@gmail.com",
+                  "Kami telah mengirimkan link untuk mengatur kata sandi baru ke alamat email ${args['emailOrPhone']}",
                   textAlign: TextAlign.center,
                   style: fontProfile,
                 ),

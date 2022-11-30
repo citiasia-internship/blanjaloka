@@ -18,49 +18,50 @@ class WelcomePage extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40,
-                  ),
-                  child: Image.asset(
-                    'asset/Logo.png',
-                    width: 187,
-                    height: 75,
-                  )),
-              const SizedBox(height: 60),
-              Image.asset(
-                'asset/opening.png',
-                height: 220,
-              ),
-              const SizedBox(
-                height: 107.0,
-              ),
-              // BUTTON MASUK
-              GestureDetector(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.only(
+                      top: 40,
+                    ),
+                    child: Image.asset(
+                      'asset/Logo.png',
+                      width: 187,
+                      height: 75,
+                    )),
+                const SizedBox(height: 60),
+                Image.asset(
+                  'asset/opening.png',
+                  height: 220,
+                ),
+                const SizedBox(
+                  height: 107.0,
+                ),
+                // BUTTON MASUK
+                GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(loginRoute);
+                    },
+                    child: costumeButtonFill('Masuk')),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Separator(
+                  text: "atau",
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                // BUTTON DAFTAR
+                GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, loginRoute);
+                    Navigator.pushNamed(context, RegisterPage.routeName);
                   },
-                  child: costumeButtonFill('Masuk')),
-              const SizedBox(
-                height: 30,
-              ),
-              const Separator(
-                text: "atau",
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              // BUTTON DAFTAR
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RegisterPage.routeName);
-                },
-                child: costumeButtonBorder('Daftar'),
-              ),
-            ],
+                  child: costumeButtonBorder('Daftar'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

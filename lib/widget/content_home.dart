@@ -1,8 +1,10 @@
 import 'package:banjaloka/bloc/business_event.dart';
 import 'package:banjaloka/bloc/business_state.dart';
 import 'package:banjaloka/model/model_item_segera.dart';
-import 'package:banjaloka/page/detail_screen.dart';
+import 'package:banjaloka/page/all_pendanaan_page.dart';
+import 'package:banjaloka/page/all_segera_page.dart';
 import 'package:banjaloka/respository/bussines_repo.dart';
+import 'package:banjaloka/widget/widget_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,10 +30,31 @@ class ContentHome extends StatelessWidget {
             );
           } else if (state is BusinessStateLoaded) {
             //   buat datany dulu
-            List<Business> business = state.business;
+            List<BussinesSoon> business = state.business;
             return Column(
               children: [
-                buildTitle('Pendanaan Berlangsung'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Pendanaan Berlangsung",
+                        style: titleList,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AllNowItem.allPendanaanItemRoute);
+                        },
+                        child: Text(
+                          'Lihat Semua',
+                          style: lihatSemua,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                   margin: const EdgeInsets.only(top: 15, left: 25),
                   height: 200,
@@ -40,20 +63,39 @@ class ContentHome extends StatelessWidget {
                       itemCount: business.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.only(right: 15),
-                          child: buildContent(
-                              context,
-                              business[index].image,
-                              business[index].name,
-                              business[index].price,
-                              '50 %',
-                              true,
-                              0.5),
-                        );
+                            padding: const EdgeInsets.only(right: 15),
+                            child: buildContentPendanaan(
+                                context,
+                                business[index].image[0],
+                                business[index].judul,
+                                business[index].price,
+                                business[index].nilaiBisnis,
+                                business[index].valueProgressbar));
                       }),
                 ),
                 const SizedBox(height: 30),
-                buildTitle('Segera Dibuka'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Segera dibuka',
+                        style: titleList,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AllSoonItem.allSoonItemRoute);
+                        },
+                        child: Text(
+                          'Lihat Semua',
+                          style: lihatSemua,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                   margin: const EdgeInsets.only(top: 15, left: 25),
                   height: 200,
@@ -62,22 +104,19 @@ class ContentHome extends StatelessWidget {
                       itemCount: business.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: EdgeInsets.only(right: 15),
-                          child: buildContent(
+                            padding: EdgeInsets.only(right: 15),
+                            child: buildContentSegera(
                               context,
-                              business[index].image,
-                              business[index].name,
+                              business[index].image[0],
+                              business[index].judul,
                               business[index].price,
-                              null,
-                              null,
-                              null),
-                        );
+                            ));
                       }),
                 ),
               ],
             );
           } else if (state is BusinessErrorState) {
-            return Text('error ');
+            return Text('error cuyy ');
           } else {
             return Container();
           }
@@ -86,100 +125,105 @@ class ContentHome extends StatelessWidget {
     );
   }
 
-  Widget buildTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 25, right: 25),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: titleList,
-          ),
-          Text(
-            'Lihat Semua',
-            style: lihatSemua,
-          )
-        ],
-      ),
-    );
-  }
+// Widget buildTitle(String title) {
+//   return Padding(
+//     padding: const EdgeInsets.only(left: 25, right: 25),
+//     child: Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Text(
+//           title,
+//           style: titleList,
+//         ),
+//         GestureDetector(
+//           onTap: (){
+//
+//           },
+//           child: Text(
+//             'Lihat Semua',
+//             style: lihatSemua,
+//           ),
+//         )
+//       ],
+//     ),
+//   );
+// }
 
-  Widget buildContent(
-      BuildContext context,
-      String imgUrl,
-      String title,
-      String price,
-      String? percenBussines,
-      bool? progresIndicator,
-      double? valueBussines) {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, DetailScreen.routeName),
-      child: Container(
-        height: 200,
-        width: 149,
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          elevation: 2,
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-                child: Image.network(
-                  imgUrl,
-                  height: 80,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              // detail dari item
-              Expanded(
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 9.5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title, style: titleItemCard),
-                      SizedBox(height: 10),
-                      progresIndicator == true
-                          ? LinearProgressIndicator(
-                              backgroundColor: progressGrey,
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                  Color(0xff398AB9)),
-                              value: valueBussines,
-                            )
-                          : Container(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Nilai Bisnis', style: businessPriceItemCard),
-                            percenBussines != null
-                                ? Text(
-                                    percenBussines,
-                                    style: businessPriceItemCard,
-                                  )
-                                : Container()
-                          ]),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        'Rp ${price}',
-                        style: priceItemCard,
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+// Widget buildContent(
+//     BuildContext context,
+//     String imgUrl,
+//     String title,
+//     String price,
+//     String? percenBussines,
+//     bool? progresIndicator,
+//     double? valueBussines) {
+//   return GestureDetector(
+//     onTap: () => Navigator.pushNamed(context, DetailScreen.routeName),
+//     child: Container(
+//       height: 200,
+//       width: 149,
+//       child: Card(
+//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+//         elevation: 2,
+//         child: Column(
+//           children: [
+//             ClipRRect(
+//               borderRadius: const BorderRadius.only(
+//                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+//               child: Image.network(
+//                 imgUrl,
+//                 height: 80,
+//                 width: double.infinity,
+//                 fit: BoxFit.cover,
+//               ),
+//             ),
+//             // detail dari item
+//             Expanded(
+//               child: Container(
+//                 padding:
+//                     const EdgeInsets.symmetric(vertical: 10, horizontal: 9.5),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(title, style: titleItemCard),
+//                     SizedBox(height: 10),
+//                     progresIndicator == true
+//                         ? LinearProgressIndicator(
+//                             backgroundColor: progressGrey,
+//                             valueColor: const AlwaysStoppedAnimation<Color>(
+//                                 Color(0xff398AB9)),
+//                             value: valueBussines,
+//                           )
+//                         : Container(),
+//                     const SizedBox(
+//                       height: 10,
+//                     ),
+//                     Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                         children: [
+//                           Text('Nilai Bisnis', style: businessPriceItemCard),
+//                           percenBussines != null
+//                               ? Text(
+//                                   percenBussines,
+//                                   style: businessPriceItemCard,
+//                                 )
+//                               : Container()
+//                         ]),
+//                     const SizedBox(
+//                       height: 6,
+//                     ),
+//                     Text(
+//                       'Rp ${price}',
+//                       style: priceItemCard,
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     ),
+//   );
+// }
 }
