@@ -1,5 +1,6 @@
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/button_default.dart';
+import 'package:banjaloka/widget/form_edit_widget.dart';
 import 'package:banjaloka/widget/input_default.dart';
 import 'package:banjaloka/widget/separator_widget.dart';
 import 'package:banjaloka/widget/text_click.dart';
@@ -151,9 +152,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             margin:
                                 const EdgeInsets.only(top: 8.0, bottom: 15.0),
                             height: 40.0,
-                            child: InputDefault(
-                              hint: "Masukkan tanggal lahir anda",
-                            ),
+                            child: FormEdit(
+                                hint: "masukan Tanggal Lahit Anda",
+                                onPress: (() {
+                                  showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2025));
+                                })),
                           ),
                         ],
                       ),
