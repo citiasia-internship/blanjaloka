@@ -3,10 +3,8 @@ class ModelRegister {
   String? email;
   String? noTelepon;
   int? roleId;
-  String? password;
 
-  ModelRegister(
-      {this.name, this.email, this.noTelepon, this.password, this.roleId});
+  ModelRegister({this.name, this.email, this.noTelepon, this.roleId});
 
   factory ModelRegister.fromJson(Map<String, dynamic> object) {
     return ModelRegister(
@@ -14,7 +12,6 @@ class ModelRegister {
       email: object['email'],
       noTelepon: object['no_telepon'],
       roleId: object['role_id'],
-      password: object['password'],
     );
   }
 }

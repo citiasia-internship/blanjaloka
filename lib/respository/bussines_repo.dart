@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/model/model_item_segera.dart';
 import 'package:banjaloka/model/model_login.dart';
 import 'package:banjaloka/model/model_register.dart';
@@ -45,31 +46,39 @@ class BusinessRepositories {
     }
   }
 
-  Future<dynamic> register(
+  Future<ModelRegister> register(
     String name,
     String email,
     String noTelepon,
-    int roleId,
     String password,
   ) async {
+    Map map = {
+      "name": name,
+      "email": email,
+      "no_telepon": noTelepon,
+      "role_id": 1,
+      "password": password,
+    };
+    var body = json.encode(map);
     final response = await http.post(
       Uri.parse("${baseUrl}users/"),
-      body: {
-        "name": name,
-        "email": email,
-        "no_telepon": noTelepon,
-        "role_id": roleId,
-        "password": password,
-      },
+      headers: {"Content-Type": "application/json"},
+      body: body,
     );
 
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       return ModelRegister.fromJson(result);
-    } else if (response.statusCode == 401) {
-      return 401;
     } else {
-      throw Exception('Error');
+      var res = jsonDecode(response.body);
+      String e = res['detail'];
+      if (e == "Phone number already registered") {
+        throw PhoneNumberAlreadyRegistered();
+      } else if (e == "Email already registered") {
+        throw EmailAlreadyRegistered();
+      } else {
+        throw Exception(e);
+      }
     }
   }
 }
