@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/model/model_item_segera.dart';
 import 'package:banjaloka/model/model_login.dart';
+import 'package:banjaloka/model/model_register.dart';
 import 'package:http/http.dart' as http;
 
 class BusinessRepositories {
@@ -37,6 +38,34 @@ class BusinessRepositories {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       return ModelLogin.fromJson(result);
+    } else if (response.statusCode == 401) {
+      return 401;
+    } else {
+      throw Exception('Error');
+    }
+  }
+
+  Future<dynamic> register(
+    String name,
+    String email,
+    String noTelepon,
+    int roleId,
+    String password,
+  ) async {
+    final response = await http.post(
+      Uri.parse("${baseUrl}users/"),
+      body: {
+        "name": name,
+        "email": email,
+        "no_telepon": noTelepon,
+        "role_id": roleId,
+        "password": password,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      return ModelRegister.fromJson(result);
     } else if (response.statusCode == 401) {
       return 401;
     } else {
