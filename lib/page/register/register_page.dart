@@ -270,8 +270,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
                       }
                     },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: primaryBlue6),
+                    style: ElevatedButton.styleFrom(primary: primaryBlue6),
                     child: const Text("Daftar"),
                   ),
                 ),

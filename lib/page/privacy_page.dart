@@ -161,7 +161,7 @@ class _PrivasiState extends State<Privasi> {
                   width: 323.0,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryBlue6,
+                          primary: primaryBlue6,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
                       onPressed: () {},
