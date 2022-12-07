@@ -1,5 +1,4 @@
 import 'package:banjaloka/bloc/auth/bloc/auth_bloc.dart';
-import 'package:banjaloka/bloc/business_bloc.dart';
 import 'package:banjaloka/constants/routes.dart';
 import 'package:banjaloka/page/account_screen.dart';
 import 'package:banjaloka/page/agenda_screen.dart';
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Home.routeName,
+      initialRoute: WelcomePage.routeName,
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),

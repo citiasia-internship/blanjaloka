@@ -145,8 +145,12 @@ class _PrivasiState extends State<Privasi> {
                     // const SizedBox(
                     //   width: 5.0,
                     // ),
-                    const Text(
-                      "Saya telah membaca dan menyetujui Kebijakan\nPrivasi dari aplikasi Blanjaloka Akselerator.", style: TextStyle(fontSize: 13),)
+                    const Expanded(
+                      child: Text(
+                        "Saya telah membaca dan menyetujui Kebijakan Privasi dari aplikasi Blanjaloka Akselerator.",
+                        style: TextStyle(fontSize: 13),
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -157,7 +161,7 @@ class _PrivasiState extends State<Privasi> {
                   width: 323.0,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: primaryBlue6,
+                          backgroundColor: primaryBlue6,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
                       onPressed: () {},

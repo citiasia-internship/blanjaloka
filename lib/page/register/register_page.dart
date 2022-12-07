@@ -1,9 +1,10 @@
+import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/page/privacy_page.dart';
 import 'package:banjaloka/page/welcome_page.dart';
+import 'package:banjaloka/respository/bussines_repo.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -15,10 +16,37 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool obscureValue = false;
+  bool obscureText = true;
+  late final TextEditingController _nama;
+  late final TextEditingController _email;
+  late final TextEditingController _noTelepon;
+  late final TextEditingController _password;
+  late final TextEditingController _confirmPassword;
+  bool _emailError = false;
+  bool _phoneError = false;
+  bool _passwordError = false;
+  @override
+  void initState() {
+    _nama = TextEditingController();
+    _email = TextEditingController();
+    _password = TextEditingController();
+    _noTelepon = TextEditingController();
+    _confirmPassword = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    _nama.dispose();
+    _noTelepon.dispose();
+    _confirmPassword.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool obscureText = true;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -32,7 +60,8 @@ class _RegisterPageState extends State<RegisterPage> {
         shadowColor: const Color.fromARGB(255, 237, 239, 237),
         title: const Text(
           'Daftar',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
         ),
         automaticallyImplyLeading: true,
       ),
@@ -76,9 +105,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukan nama anda',
                     // focusedBorder: OutlineInputBorder(),
                     border: outlineInputBorder,
-                    contentPadding: EdgeInsets.all(17),
+                    contentPadding: const EdgeInsets.all(17),
                     isDense: true,
                   ),
+                  controller: _nama,
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -99,9 +129,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukkan alamat email anda',
                     // focusedBorder: OutlineInputBorder(),
                     border: outlineInputBorder,
-                    contentPadding: EdgeInsets.all(17),
+                    contentPadding: const EdgeInsets.all(17),
                     isDense: true,
+                    errorText:
+                        _emailError ? "Alamat email sudah terdaftar" : null,
                   ),
+                  controller: _email,
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -122,9 +155,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: 'Masukan nomor Telepon anda',
                     // focusedBorder: OutlineInputBorder(),
                     border: outlineInputBorder,
-                    contentPadding: EdgeInsets.all(17),
+                    contentPadding: const EdgeInsets.all(17),
                     isDense: true,
+                    errorText:
+                        _phoneError ? "Nomor telepon sudah terdaftar" : null,
                   ),
+                  controller: _noTelepon,
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -140,23 +176,28 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 10.0,
                 ),
                 TextField(
-                    // obscureText: controller.obscureText.value,
-                    decoration: InputDecoration(
-                  hintText: 'Masukkan kata sandi akun anda',
-                  // focusedBorder: OutlineInputBorder(),
-                  border: outlineInputBorder,
-                  contentPadding: EdgeInsets.all(17),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        obscureText ? Icons.visibility : Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
+                  // obscureText: controller.obscureText.value,
+                  decoration: InputDecoration(
+                    hintText: 'Masukkan kata sandi akun anda',
+                    // focusedBorder: OutlineInputBorder(),
+                    border: outlineInputBorder,
+                    contentPadding: const EdgeInsets.all(17),
+                    errorText: _passwordError ? "Kata sandi tidak sama" : null,
+                    suffixIcon: IconButton(
+                      icon: Icon(obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
                         obscureText = !obscureText;
-                      });
-                    },
+                        setState(() {});
+                      },
+                    ),
+
+                    isDense: true,
                   ),
-                  isDense: true,
-                )),
+                  obscureText: obscureText,
+                  controller: _password,
+                ),
                 const SizedBox(
                   height: 20.0,
                 ),
@@ -171,30 +212,68 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 10.0,
                 ),
                 TextField(
-                    // obscureText: controller.obscureTextConfirm.value,
-                    decoration: InputDecoration(
-                  hintText: 'Konfirmasi kata sandi akun anda',
-                  // focusedBorder: OutlineInputBorder(),
-                  border: outlineInputBorder,
-                  contentPadding: const EdgeInsets.all(17),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        obscureText ? Icons.visibility : Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        obscureText = !obscureText;
-                      });
-                    },
+                  // obscureText: controller.obscureTextConfirm.value,
+                  decoration: InputDecoration(
+                    hintText: 'Konfirmasi kata sandi akun anda',
+                    // focusedBorder: OutlineInputBorder(),
+                    border: outlineInputBorder,
+                    contentPadding: const EdgeInsets.all(17),
+                    errorText: _passwordError ? "Kata sandi tidak sama" : null,
+                    suffixIcon: IconButton(
+                      icon: Icon(obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                        });
+                      },
+                    ),
+
+                    isDense: true,
                   ),
-                  isDense: true,
-                )),
+                  controller: _confirmPassword,
+                  obscureText: obscureText,
+                ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, Privasi.routeName);
-                  },
-                  child: const Text("Daftar"),
-                  style: buttonPrimaryRegister,
+                SizedBox(
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      _emailError = false;
+                      _phoneError = false;
+                      _passwordError = false;
+                      setState(() {});
+                      if (_password.text != _confirmPassword.text) {
+                        _passwordError = true;
+                        setState(() {});
+                      } else {
+                        try {
+                          await BusinessRepositories().register(
+                            _nama.text,
+                            _email.text,
+                            _noTelepon.text,
+                            _password.text,
+                          );
+                          if (!mounted) return;
+                          Navigator.pushReplacementNamed(
+                              context, Privasi.routeName);
+                        } on EmailAlreadyRegistered catch (_) {
+                          _emailError = !_emailError;
+                          setState(() {});
+                        } on PhoneNumberAlreadyRegistered catch (_) {
+                          _phoneError = !_phoneError;
+                          setState(() {});
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(e.toString())));
+                        }
+                      }
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: primaryBlue6),
+                    child: const Text("Daftar"),
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Padding(
