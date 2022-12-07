@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/model/model_item_segera.dart';
 import 'package:banjaloka/model/model_login.dart';
 import 'package:banjaloka/model/model_register.dart';
@@ -9,14 +8,15 @@ import 'package:http/http.dart' as http;
 class BusinessRepositories {
   final baseUrl = "https://blanjaloka.irfancen.com/";
 
-  Future<List<Business>> fetchBusiness() async {
-    var url = 'https://6345313139ca915a69f82198.mockapi.io/api/v1/product';
+  Future<List<BussinesSoon>> fetchBusiness() async {
+    var url = "https://blanjaloka-api.herokuapp.com/data";
 
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       final List result = jsonDecode(response.body);
-      return result.map((e) => Business.fromJson(e)).toList();
+      print(response.body);
+      return result.map((e) => BussinesSoon.fromJson(e)).toList();
     } else {
       throw Exception('Error');
     }

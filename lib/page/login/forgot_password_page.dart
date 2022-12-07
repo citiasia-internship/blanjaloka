@@ -119,7 +119,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     borderRadius: BorderRadius.circular(defaultRadius),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
+                        primary:
                             _textIsEmpty ? primaryBlue3 : primaryBlue6,
                       ),
                       onPressed: _textIsEmpty

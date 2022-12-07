@@ -1,5 +1,6 @@
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/button_default.dart';
+import 'package:banjaloka/widget/form_edit_widget.dart';
 import 'package:banjaloka/widget/input_default.dart';
 import 'package:banjaloka/widget/separator_widget.dart';
 import 'package:banjaloka/widget/text_click.dart';
@@ -35,53 +36,53 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
         backgroundColor: neutralWhite,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(11.0),
-        child: Stack(
-          children: [
-            // SECTION 1 PHOTO PROFILE
-            Container(
-              padding: const EdgeInsets.all(18.0),
-              color: const Color(0xffF8F8F8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: 75.0,
-                        width: 75.0,
-                        decoration: BoxDecoration(
-                          // color: neutralWhite,
-                          borderRadius: BorderRadius.circular(50.0),
-                          image: const DecorationImage(
-                            image: AssetImage(
-                              "asset/img/accountProfile.png",
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.all(11.0),
+          child: Stack(
+            children: [
+              // SECTION 1 PHOTO PROFILE
+              Container(
+                padding: const EdgeInsets.all(18.0),
+                color: const Color(0xffF8F8F8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          height: 75.0,
+                          width: 75.0,
+                          decoration: BoxDecoration(
+                            // color: neutralWhite,
+                            borderRadius: BorderRadius.circular(50.0),
+                            image: const DecorationImage(
+                              image: AssetImage(
+                                "asset/img/accountProfile.png",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 14.0,
-                      ),
-                      TextClick(
-                        text: "Ubah Foto Profil",
-                        size: 12.0,
-                        onPress: (() {}),
-                      ),
-                    ],
-                  )
-                ],
+                        const SizedBox(
+                          height: 14.0,
+                        ),
+                        TextClick(
+                          text: "Ubah Foto Profil",
+                          size: 12.0,
+                          onPress: (() {}),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-            // SECTION 2 FORM INPUT
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
+              // SECTION 2 FORM INPUT
+              Container(
+                margin: const EdgeInsets.only(top: 170.0),
                 width: double.infinity,
-                height: 509.0,
+                height: 590.0,
                 decoration: BoxDecoration(
                   color: neutralWhite,
                   borderRadius: const BorderRadius.only(
@@ -90,7 +91,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(26.0),
+                  padding: const EdgeInsets.only(
+                    top: 26.0,
+                    right: 26.0,
+                    left: 26.0,
+                  ),
                   child: ListView(
                     children: [
                       // INPUT 1
@@ -147,9 +152,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             margin:
                                 const EdgeInsets.only(top: 8.0, bottom: 15.0),
                             height: 40.0,
-                            child: InputDefault(
-                              hint: "Masukkan tanggal lahir anda",
-                            ),
+                            child: FormEdit(
+                                hint: "masukan Tanggal Lahit Anda",
+                                onPress: (() {
+                                  showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2025));
+                                })),
                           ),
                         ],
                       ),
@@ -237,21 +248,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       const SizedBox(
                         height: 16.0,
                       ),
-                      ButtonDefault(
-                        text: "Simpan",
-                        height: 48.0,
-                        width: 323.0,
-                        onPress: () {},
-                        color: primaryBlue7,
-                        radius: 10.0,
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 30.0),
+                        child: ButtonDefault(
+                          text: "Simpan",
+                          height: 48.0,
+                          width: 323.0,
+                          onPress: () {},
+                          color: primaryBlue7,
+                          radius: 10.0,
+                        ),
                       )
                     ],
                   ),
                 ),
-              ),
-            )
-            // SECTION 3 BUTTON
-          ],
+              )
+              // SECTION 3 BUTTON
+            ],
+          ),
         ),
       ),
     );
