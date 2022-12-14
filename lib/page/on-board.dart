@@ -1,4 +1,4 @@
-import 'package:banjaloka/page/welcome_page.dart';
+import 'package:banjaloka/page/home_page.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/costume_button.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,8 @@ import '../model/model_onboard.dart';
 
 class OnBoardingPage extends StatefulWidget {
   static const routeName = '/onboardingPage';
+
+  const OnBoardingPage({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingPage> createState() => _OnBoardingPageState();
@@ -41,7 +43,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             // tulisan lewati
             _pageIndex != 2
                 ? Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       top: 20,
                       right: 25,
                     ),
@@ -50,7 +52,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushReplacementNamed(
-                              context, WelcomePage.routeName);
+                              context, Home.routeName);
                         },
                         child: Text('Lewati',
                             style: lihatSemua.copyWith(
@@ -59,7 +61,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     ),
                   )
                 : Container(),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             // buat gambar sama title
@@ -86,14 +88,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     children: [
                       Container(),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 60),
+                        padding: const EdgeInsets.only(bottom: 60),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ...List.generate(
                                 dataOnboarding.length,
                                 (index) => Padding(
-                                      padding: EdgeInsets.only(right: 5),
+                                      padding: const EdgeInsets.only(right: 5),
                                       child: DotIndicator(
                                         isActive: index == _pageIndex,
                                       ),
@@ -108,21 +110,21 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       GestureDetector(
                           onTap: () {
                             Navigator.pushReplacementNamed(
-                                context, WelcomePage.routeName);
+                                context, Home.routeName);
                           },
                           child: costumeButtonFill('Mulai Sekarang')),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 60),
+                        padding: const EdgeInsets.only(bottom: 60),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ...List.generate(
                                 dataOnboarding.length,
                                 (index) => Padding(
-                                      padding: EdgeInsets.only(right: 5),
+                                      padding: const EdgeInsets.only(right: 5),
                                       child: DotIndicator(
                                         isActive: index == _pageIndex,
                                       ),
@@ -180,10 +182,10 @@ class BuildContentOnBoard extends StatelessWidget {
     return Column(
       children: [
         Image.asset(imageUrl, height: 400),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Container(
+        SizedBox(
           width: 300,
           child: Text(
             detail,

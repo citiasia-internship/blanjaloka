@@ -1,11 +1,7 @@
-import 'package:banjaloka/bloc/auth/bloc/auth_bloc.dart';
-import 'package:banjaloka/bloc/auth/bloc/auth_event.dart';
-import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/constants/routes.dart';
 import 'package:banjaloka/page/home_page.dart';
 import 'package:banjaloka/respository/bussines_repo.dart';
 import 'package:banjaloka/theme/theme.dart';
-import 'package:banjaloka/widget/loading/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,9 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _obsText = true;
   bool _emailOrPasswordIsEmpty = true;
   bool _emailError = false;
-  bool _passwordError = false;
   String? _emailErrorText;
-  String? _passwordErrorText;
 
   void _textControllerListener() {
     _emailError = false;
@@ -321,6 +315,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-    ;
   }
 }
