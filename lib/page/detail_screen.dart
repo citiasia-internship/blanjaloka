@@ -1,22 +1,31 @@
+import 'package:banjaloka/constants/currency_format.dart';
+import 'package:banjaloka/model/model_item_segera.dart';
 import 'package:banjaloka/theme/theme.dart';
+import 'package:banjaloka/widget/widget_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lorem/flutter_lorem.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:photo_view/photo_view.dart';
 
+import '../bloc/business_bloc.dart';
+import '../bloc/business_event.dart';
+import '../bloc/business_state.dart';
+import '../respository/bussines_repo.dart';
+
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  // final BussinesSoon business ;
+  // DetailScreen(this.business) ;
   static const routeName = '/detail-screen';
 
-  static const List<String> images = [
-    'asset/store1.jpg',
-    'asset/store2.jpg',
-    'asset/store3.jpg',
-    'asset/store4.jpg',
-    'asset/store5.jpg',
-  ];
+  // static const List<String> images = [
+  //   'asset/store1.jpg',
+  //   'asset/store2.jpg',
+  //   'asset/store3.jpg',
+  //   'asset/store4.jpg',
+  //   'asset/store5.jpg',
+  // ];
 
   static const List<String> tabs = [
     "Finansial",
@@ -38,200 +47,113 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bussinesBloc = BusinessBloc(BusinessRepositories())..add(BusinessLoadingEvent()) ;
+
     return SafeArea(
       child: DefaultTabController(
         length: tabs.length,
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.grey[50],
-            iconTheme: const IconThemeData(
-              color: Colors.black,
-            ),
-            elevation: 0,
-            title: Text(
-              'Detail Bisnis',
-              style: titleList,
-            ),
-            titleSpacing: 0,
-          ),
-          body: Stack(
-            children: [
-              NestedScrollView(
-                headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-                  SliverAppBar(
-                    pinned: false,
-                    snap: false,
-                    floating: false,
-                    automaticallyImplyLeading: false,
-                    backgroundColor: Colors.transparent,
-                    expandedHeight: 200,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: CarouselSlider.builder(
-                        options: CarouselOptions(
-                          height: 200,
-                          pageSnapping: true,
-                          viewportFraction: 1,
+          appBar: buildAppBar(context, 'Detail Bisnis'),
+          body: BlocBuilder<BusinessBloc , BusinessState>(
+            bloc: bussinesBloc,
+            builder: ( context, state) {
+              if (state is LoadingBusinessState){
+                return Center(child: CircularProgressIndicator(),) ;
+              } else if ( state is DetailStateLoaded) {
+                BussinesSoon business = state.busines ;
+                return Stack(
+                  children: [
+                    NestedScrollView(
+                      headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+                        SliverAppBar(
+                          pinned: false,
+                          snap: false,
+                          floating: false,
+                          automaticallyImplyLeading: false,
+                          backgroundColor: Colors.transparent,
+                          expandedHeight: 200,
+                          flexibleSpace: FlexibleSpaceBar(
+                            background: CarouselSlider.builder(
+                              options: CarouselOptions(
+                                height: 200,
+                                pageSnapping: true,
+                                viewportFraction: 1,
+                              ),
+                              itemCount: business.image.length,
+                              itemBuilder: (context, index, realIndex) =>
+                                  CarouselImages(
+                                    index: index,
+                                    images: business.image,
+                                  ),
+                            ),
+                          ),
                         ),
-                        itemCount: images.length,
-                        itemBuilder: (context, index, realIndex) =>
-                            CarouselImages(
-                          index: index,
-                          images: images,
+                        SliverPersistentHeader(
+                          pinned: true,
+                          delegate: MyHeader(tabs, business),
                         ),
+                      ],
+                      body:  TabBarView(
+                        children: [
+                          Finansial(business),
+                          TentangBisnis(business),
+                          Kategori(),
+                          Lokasi(business),
+                          KalkulatorInvetasi(),
+                        ],
                       ),
                     ),
-                  ),
-                  SliverPersistentHeader(
-                    pinned: true,
-                    delegate: MyHeader(tabs),
-                  ),
-                ],
-                body: const TabBarView(
-                  children: [
-                    Finansial(),
-                    TentangBisnis(),
-                    Kategori(kategori: kategori),
-                    Lokasi(),
-                    KalkulatorInvestasi(),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  height: 72,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0),
-                        blurRadius: 3,
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        // backgroundColor: primaryBlue6,
-                        primary: primaryBlue6,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                    Positioned(
+                      bottom: 0,
+                      child: Container(
+                        height: 72,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0.0, 1.0),
+                              blurRadius: 3,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              // backgroundColor: primaryBlue6,
+                              primary: primaryBlue6,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                            child: const Text(
+                              'Ajukan Agenda',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            onPressed: () {},
                           ),
                         ),
                       ),
-                      child: const Text(
-                        'Ajukan Agenda',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
+                    )
+                  ],
+                ) ;
+              } else if (state is BusinessErrorState ) {
+                return Text('eror') ;
+              } else {
+                return Container() ;
+              }
+            },
+          ) ,
         ),
       ),
     );
   }
-}
 
-class KalkulatorInvestasi extends StatelessWidget {
-  const KalkulatorInvestasi({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('asd');
-  }
-}
-
-class Lokasi extends StatelessWidget {
-  const Lokasi({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('asd');
-  }
-}
-
-class Kategori extends StatelessWidget {
-  const Kategori({
-    Key? key,
-    required this.kategori,
-  }) : super(key: key);
-
-  final Map<String, dynamic> kategori;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(24, 0, 24, 88),
-      itemCount: 3,
-      itemBuilder: ((context, index) => ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Container(
-              width: 42,
-              height: 42,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: primaryBlue1,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-              child: Image.asset(kategori['image'][index]),
-            ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Text(
-                kategori['title'][index],
-                style: subtitle,
-              ),
-            ),
-            subtitle: Text(
-              kategori['sub'][index],
-              style: subtitleBold,
-            ),
-          )),
-    );
-  }
-}
-
-class TentangBisnis extends StatelessWidget {
-  const TentangBisnis({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 88),
-      children: [
-        Text(
-          lorem(),
-          textAlign: TextAlign.justify,
-          style: subtitle,
-        ),
-      ],
-    );
-  }
-}
-
-class Finansial extends StatelessWidget {
-  const Finansial({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget Finansial(BussinesSoon business){
     return ListView(
       primary: false,
       physics: const NeverScrollableScrollPhysics(),
@@ -245,7 +167,7 @@ class Finansial extends StatelessWidget {
           height: 8,
         ),
         Text(
-          '40%',
+          '${business.nilaiBisnis} %',
           style: subtitleBold,
         ),
         const SizedBox(
@@ -265,12 +187,67 @@ class Finansial extends StatelessWidget {
       ],
     );
   }
+
+  Widget TentangBisnis(BussinesSoon business){
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 88),
+      children: [
+        Text(
+          business.tentangBisnis,
+          textAlign: TextAlign.justify,
+          style: subtitle,
+        ),
+      ],
+    );
+  }
+
+  Widget KalkulatorInvetasi(){
+    return const Text('asd');
+  }
+
+  Widget Lokasi(BussinesSoon business){
+    return  Text(business.lokasi);
+  }
+
+  Widget Kategori(){
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 88),
+      itemCount: 3,
+      itemBuilder: ((context, index) => ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Container(
+          width: 42,
+          height: 42,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: primaryBlue1,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Image.asset(kategori['image'][index]),
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 6),
+          child: Text(
+            kategori['title'][index],
+            style: subtitle,
+          ),
+        ),
+        subtitle: Text(
+          kategori['sub'][index],
+          style: subtitleBold,
+        ),
+      )),
+    );
+  }
 }
 
 class MyHeader extends SliverPersistentHeaderDelegate {
   final List<String> tabs;
+  final BussinesSoon business ;
 
-  MyHeader(this.tabs);
+  MyHeader(this.tabs , this.business);
 
   @override
   Widget build(
@@ -289,7 +266,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 12),
                     child: Text(
-                      'Polo Clothes',
+                      business.judul,
                       style: titleList,
                       maxLines: 1,
                       overflow: TextOverflow.fade,
@@ -321,7 +298,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 4, 24, 0),
             child: Text(
-              'PT Polo Indonesia     ',
+              business.perusahaan,
               style: subtitle,
               maxLines: 1,
             ),
@@ -329,7 +306,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
             child: Text(
-              'Jakarta',
+              business.lokasi,
               style: subtitle,
             ),
           ),
@@ -346,7 +323,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    'Rp 12.500.000',
+                    CurrencyFormat.convertToIdn(business.hasilInvestasi).toString(),
                     style: bigTitle,
                   ),
                 ),
@@ -356,7 +333,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    'dari target Rp 25.000.000',
+                    'dari target ' +   CurrencyFormat.convertToIdn(business.price).toString(),
                     style: subtitle,
                   ),
                 ),
@@ -378,7 +355,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    '6 investor',
+                    '${business.jumlahInvestor} investor',
                     style: subtitleBold,
                   ),
                 ),
@@ -424,6 +401,7 @@ class MyHeader extends SliverPersistentHeaderDelegate {
       false;
 }
 
+// aman
 class CarouselImages extends StatelessWidget {
   final int index;
   final List<String> images;

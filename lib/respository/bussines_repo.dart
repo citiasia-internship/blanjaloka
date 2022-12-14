@@ -13,15 +13,32 @@ class BusinessRepositories {
     var url = "https://blanjaloka-api.herokuapp.com/data" ;
 
     final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      final List result = jsonDecode(response.body);
-      print(response.body);
-      return result.map((e) => BussinesSoon.fromJson(e)).toList();
-    } else {
-      throw Exception('Error');
+    try{
+      if (response.statusCode == 200) {
+        final List result = jsonDecode(response.body);
+        print(response.body);
+        return result.map((e) => BussinesSoon.fromJson(e)).toList();
+      }else {
+        return <BussinesSoon>[];
+      }
+    }catch(e){
+      print(e) ;
+      return <BussinesSoon>[];
     }
   }
+
+  // Future<BussinesSoon> fetchDetailBusiness() async {
+  //   var url = "https://blanjaloka-api.herokuapp.com/data" ;
+  //
+  //   final response = await http.get(Uri.parse(url));
+  //
+  //   if (response.statusCode == 200) {
+  //     return BussinesSoon.fromJson(jsonDecode(response.body)) ;
+  //     print(response.body);
+  //   } else {
+  //     throw Exception("Can't get detail data");
+  //   }
+  // }
 
   Future<dynamic> login(String email, String password) async {
     final response = await http.post(

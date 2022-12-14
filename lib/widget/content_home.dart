@@ -66,6 +66,7 @@ class ContentHome extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 15),
                             child: buildContentPendanaan(
                                 context,
+                                // business[index],
                                 business[index].image[0],
                                 business[index].judul,
                                 business[index].price,
@@ -107,6 +108,7 @@ class ContentHome extends StatelessWidget {
                             padding: EdgeInsets.only(right: 15),
                             child: buildContentSegera(
                               context,
+                              // business[index] ,
                               business[index].image[0],
                               business[index].judul,
                               business[index].price,

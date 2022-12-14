@@ -40,6 +40,7 @@ class AllNowItem extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return buildContentPendanaan(
                           context,
+                          // business[index] ,
                           business[index].image[0],
                           business[index].judul,
                           business[index].price,

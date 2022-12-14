@@ -37,7 +37,12 @@ class AllSoonItem extends StatelessWidget {
                   ),
                   itemCount: business.length,
                   itemBuilder: (context, index) {
-                    return buildContentSegera(context, business[index].image[0], business[index].judul, business[index].price);
+                    return buildContentSegera(
+                        context,
+                        // business[index] ,
+                        business[index].image[0],
+                        business[index].judul,
+                        business[index].price);
                   }
               ),
             ) ;

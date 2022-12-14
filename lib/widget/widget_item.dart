@@ -1,4 +1,7 @@
+import 'package:banjaloka/bloc/business_bloc.dart';
+import 'package:banjaloka/model/model_item_segera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../constants/currency_format.dart';
 import '../page/detail_screen.dart';
@@ -6,13 +9,16 @@ import '../theme/theme.dart';
 
 Widget buildContentPendanaan(
     BuildContext context,
+    // BussinesSoon bussinesSoon,
     String imgUrl,
     String title,
     int  price,
     int percenBussines,
     double valueBussines) {
   return GestureDetector(
-    onTap: () => Navigator.pushNamed(context, DetailScreen.routeName),
+    onTap: (){
+      Navigator.pushNamed(context, DetailScreen.routeName) ;
+    },
     child: Container(
       height: 200,
       width: 149,
@@ -79,11 +85,14 @@ Widget buildContentPendanaan(
 
 Widget buildContentSegera(
     BuildContext context,
+    // BussinesSoon bussinesSoon,
     String imgUrl,
     String title,
     int  price,) {
   return GestureDetector(
-    onTap: () => Navigator.pushNamed(context, DetailScreen.routeName),
+    onTap: (){
+      Navigator.pushNamed(context, DetailScreen.routeName) ;
+    },
     child: Container(
       height: 200,
       width: 149,

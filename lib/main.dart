@@ -2,6 +2,7 @@
 import 'package:banjaloka/bloc/auth/bloc/auth_bloc.dart';
 import 'package:banjaloka/bloc/business_bloc.dart';
 import 'package:banjaloka/constants/routes.dart';
+import 'package:banjaloka/model/model_item_segera.dart';
 import 'package:banjaloka/page/account_screen.dart';
 import 'package:banjaloka/page/agenda_screen.dart';
 import 'package:banjaloka/page/all_pendanaan_page.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Home.routeName,
+      initialRoute: SplashScreen.routeName,
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
         BerandaScreen.routeName: (context) => const BerandaScreen(),
         AgendaScreen.routeName: (context) => const AgendaScreen(),
         AccountScreen.routeName: (context) => const AccountScreen(),
-        DetailScreen.routeName: (context) => const DetailScreen(),
+        DetailScreen.routeName: (context) =>  DetailScreen(),
         Privasi.routeName: (context) => const Privasi(),
         InfoAccount.routeName: (context) => const InfoAccount(),
 
