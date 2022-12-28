@@ -19,7 +19,7 @@ class LoadingBusinessState extends BusinessState {
 
 class BusinessStateLoaded extends BusinessState {
   // karena disini itu udah ada data yang akan muncul , maka kita buat constrcutor untuk datanya
-  final List<BussinesSoon> business;
+  final List<Business> business;
 
   BusinessStateLoaded(this.business);
 
@@ -27,6 +27,17 @@ class BusinessStateLoaded extends BusinessState {
   // TODO: implement props
   List<Object?> get props => [business];
 }
+
+// class DetailStateLoaded extends BusinessState {
+//   // karena disini itu udah ada data yang akan muncul , maka kita buat constrcutor untuk datanya
+//   final BussinesSoon busines;
+//
+//   DetailStateLoaded(this.busines);
+//
+//   @override
+//   // TODO: implement props
+//   List<Object?> get props => [busines];
+// }
 
 // state saat error
 class BusinessErrorState extends BusinessState {

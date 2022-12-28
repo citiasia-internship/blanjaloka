@@ -27,7 +27,7 @@ class AllNowItem extends StatelessWidget {
             if (state is LoadingBusinessState){
               return Center(child: CircularProgressIndicator(),) ;
             } else if ( state is BusinessStateLoaded) {
-              List<BussinesSoon> business = state.business ;
+              List<Business> business = state.business ;
               return   Padding(
                 padding: EdgeInsets.all(20),
                 child: GridView.builder(
@@ -38,14 +38,13 @@ class AllNowItem extends StatelessWidget {
                     ),
                     itemCount: business.length,
                     itemBuilder: (context, index) {
-                      return buildContentPendanaan(
-                          context,
-                          business[index].image[0],
-                          business[index].judul,
-                          business[index].price,
-                          business[index].nilaiBisnis ,
-                          business[index].valueProgressbar
-                      );
+                      return  buildContentPendanaan(
+                          context: context,
+                          imgUrl: business[index].image,
+                          title: business[index].name,
+                          price: business[index].price,
+                          percenBussines: business[index].percentBussines,
+                          valueBussines: business[index].valueProgressBar.toDouble());
                     }
                 ),
               ) ;

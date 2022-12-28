@@ -75,9 +75,9 @@ class DetailScreen extends StatelessWidget {
                         itemCount: images.length,
                         itemBuilder: (context, index, realIndex) =>
                             CarouselImages(
-                          index: index,
-                          images: images,
-                        ),
+                              index: index,
+                              images: images,
+                            ),
                       ),
                     ),
                   ),
@@ -176,31 +176,31 @@ class Kategori extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 88),
       itemCount: 3,
       itemBuilder: ((context, index) => ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Container(
-              width: 42,
-              height: 42,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: primaryBlue1,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-              child: Image.asset(kategori['image'][index]),
+        contentPadding: EdgeInsets.zero,
+        leading: Container(
+          width: 42,
+          height: 42,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: primaryBlue1,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Text(
-                kategori['title'][index],
-                style: subtitle,
-              ),
-            ),
-            subtitle: Text(
-              kategori['sub'][index],
-              style: subtitleBold,
-            ),
-          )),
+          ),
+          child: Image.asset(kategori['image'][index]),
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 6),
+          child: Text(
+            kategori['title'][index],
+            style: subtitle,
+          ),
+        ),
+        subtitle: Text(
+          kategori['sub'][index],
+          style: subtitleBold,
+        ),
+      )),
     );
   }
 }

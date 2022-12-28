@@ -1,3 +1,4 @@
+import 'package:banjaloka/page/notification_page.dart';
 import 'package:banjaloka/respository/bussines_repo.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/carousel_slider.dart';
@@ -18,13 +19,18 @@ class BerandaScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Align(
+              Align(
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.only(top: 15, right: 25),
-                child: Icon(
-                  Icons.notifications_outlined,
-                  size: 32,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage(),));
+                  },
+                  child: const Icon(
+                    Icons.notifications_outlined,
+                    size: 32,
+                  ),
                 ),
               ),
             ),

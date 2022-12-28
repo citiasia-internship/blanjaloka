@@ -26,7 +26,7 @@ class AllSoonItem extends StatelessWidget {
           if (state is LoadingBusinessState){
             return Center(child: CircularProgressIndicator(),) ;
           } else if ( state is BusinessStateLoaded) {
-            List<BussinesSoon> business = state.business ;
+            List<Business> business = state.business ;
             return   Padding(
               padding: EdgeInsets.all(25),
               child: GridView.builder(
@@ -37,7 +37,12 @@ class AllSoonItem extends StatelessWidget {
                   ),
                   itemCount: business.length,
                   itemBuilder: (context, index) {
-                    return buildContentSegera(context, business[index].image[0], business[index].judul, business[index].price);
+                    return buildContentSegera(
+                        context: context,
+                        imgUrl: business[index].image,
+                        title: business[index].name,
+                        price: business[index].price);
+
                   }
               ),
             ) ;
