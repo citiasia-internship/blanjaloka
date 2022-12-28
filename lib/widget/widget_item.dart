@@ -1,20 +1,18 @@
-import 'package:banjaloka/bloc/business_bloc.dart';
-import 'package:banjaloka/model/model_item_segera.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../constants/currency_format.dart';
+import 'package:flutter/material.dart';
 import '../page/detail_screen.dart';
 import '../theme/theme.dart';
 
 Widget buildContentPendanaan(
-    BuildContext context,
-    // BussinesSoon bussinesSoon,
-    String imgUrl,
-    String title,
-    int  price,
-    int percenBussines,
-    double valueBussines) {
+{
+  required BuildContext context,
+  // BussinesSoon bussinesSoon,
+  required String imgUrl,
+  required String title,
+  required String  price,
+  required int percenBussines,
+  required double valueBussines
+}) {
   return GestureDetector(
     onTap: (){
       Navigator.pushNamed(context, DetailScreen.routeName) ;
@@ -41,11 +39,11 @@ Widget buildContentPendanaan(
             Expanded(
               child: Container(
                 padding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 9.5),
+                const EdgeInsets.symmetric(vertical: 5, horizontal: 9.5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: titleItemCard),
+                    Text(title, style: titleItemCard , maxLines: 1 , overflow: TextOverflow.ellipsis,),
                     SizedBox(height: 10),
                     LinearProgressIndicator(
                       backgroundColor: progressGrey,
@@ -69,7 +67,7 @@ Widget buildContentPendanaan(
                       height: 6,
                     ),
                     Text(
-                      CurrencyFormat.convertToIdn(price),
+                      price,
                       style: priceItemCard,
                     )
                   ],
@@ -83,12 +81,12 @@ Widget buildContentPendanaan(
   );
 }
 
-Widget buildContentSegera(
-    BuildContext context,
-    // BussinesSoon bussinesSoon,
-    String imgUrl,
-    String title,
-    int  price,) {
+Widget buildContentSegera( {
+  required BuildContext context,
+  required String imgUrl,
+  required String title,
+  required String  price,
+}) {
   return GestureDetector(
     onTap: (){
       Navigator.pushNamed(context, DetailScreen.routeName) ;
@@ -119,7 +117,7 @@ Widget buildContentSegera(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: titleItemCard),
+                    Text(title, style: titleItemCard,maxLines: 1 , overflow: TextOverflow.ellipsis,),
                     const SizedBox(
                       height: 10,
                     ),
@@ -128,7 +126,7 @@ Widget buildContentSegera(
                       height: 6,
                     ),
                     Text(
-                      CurrencyFormat.convertToIdn(price),
+                      price,
                       style: priceItemCard,
                     )
                   ],

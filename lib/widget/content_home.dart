@@ -30,7 +30,7 @@ class ContentHome extends StatelessWidget {
             );
           } else if (state is BusinessStateLoaded) {
             //   buat datany dulu
-            List<BussinesSoon> business = state.business;
+            List<Business> business = state.business;
             return Column(
               children: [
                 Padding(
@@ -65,13 +65,13 @@ class ContentHome extends StatelessWidget {
                         return Padding(
                             padding: const EdgeInsets.only(right: 15),
                             child: buildContentPendanaan(
-                                context,
-                                // business[index],
-                                business[index].image[0],
-                                business[index].judul,
-                                business[index].price,
-                                business[index].nilaiBisnis,
-                                business[index].valueProgressbar));
+                                context: context,
+                                imgUrl: business[index].image,
+                                title: business[index].name,
+                                price: business[index].price,
+                                percenBussines: business[index].percentBussines,
+                                valueBussines: business[index].valueProgressBar.toDouble())
+                        );
                       }),
                 ),
                 const SizedBox(height: 30),
@@ -107,12 +107,11 @@ class ContentHome extends StatelessWidget {
                         return Padding(
                             padding: EdgeInsets.only(right: 15),
                             child: buildContentSegera(
-                              context,
-                              // business[index] ,
-                              business[index].image[0],
-                              business[index].judul,
-                              business[index].price,
-                            ));
+                                context: context,
+                                imgUrl: business[index].image,
+                                title: business[index].name,
+                                price: business[index].price)
+                        );
                       }),
                 ),
               ],

@@ -18,14 +18,6 @@ class BusinessBloc extends Bloc<BusinessEvents, BusinessState> {
       } catch (e) {
         emit(BusinessErrorState(e.toString()));
       }
-
-      // try {
-      //   final detailbusiness = await _businessRepositories.fetchDetailBusiness();
-      //   emit(DetailStateLoaded(detailbusiness)) ;
-      // } catch (e) {
-      //   emit(BusinessErrorState(e.toString()));
-      // }
-
     });
   }
 }

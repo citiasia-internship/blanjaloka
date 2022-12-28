@@ -9,21 +9,21 @@ import 'package:http/http.dart' as http;
 class BusinessRepositories {
   final baseUrl = "https://blanjaloka.irfancen.com/";
 
-  Future<List<BussinesSoon>> fetchBusiness() async {
-    var url = "https://blanjaloka-api.herokuapp.com/data";
+  Future<List<Business>> fetchBusiness() async {
+    var url = "https://6345313139ca915a69f82198.mockapi.io/api/v1/product";
 
     final response = await http.get(Uri.parse(url));
     try{
       if (response.statusCode == 200) {
         final List result = jsonDecode(response.body);
         print(response.body);
-        return result.map((e) => BussinesSoon.fromJson(e)).toList();
+        return result.map((e) => Business.fromJson(e)).toList();
       }else {
-        return <BussinesSoon>[];
+        return <Business>[];
       }
     }catch(e){
       print(e) ;
-      return <BussinesSoon>[];
+      return <Business>[];
     }
   }
 
