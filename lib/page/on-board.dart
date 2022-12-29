@@ -1,4 +1,5 @@
 import 'package:banjaloka/page/home_page.dart';
+import 'package:banjaloka/page/welcome_page.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/costume_button.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushReplacementNamed(
-                              context, Home.routeName);
+                              context, WelcomePage.routeName);
                         },
                         child: Text('Lewati',
                             style: lihatSemua.copyWith(
@@ -110,7 +111,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       GestureDetector(
                           onTap: () {
                             Navigator.pushReplacementNamed(
-                                context, Home.routeName);
+                                context, WelcomePage.routeName);
                           },
                           child: costumeButtonFill('Mulai Sekarang')),
                       const SizedBox(

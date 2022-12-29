@@ -164,7 +164,9 @@ class _PrivasiState extends State<Privasi> {
                           primary: primaryBlue6,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, RegisterPage.routeName);
+                      },
                       child: Text(
                         "Lanjutkan",
                         style: TextStyle(

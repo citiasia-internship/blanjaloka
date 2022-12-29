@@ -1,5 +1,6 @@
 import 'package:banjaloka/bloc/exceptions/auth_exceptions.dart';
 import 'package:banjaloka/page/privacy_page.dart';
+import 'package:banjaloka/page/register/register_page_success.dart';
 import 'package:banjaloka/page/welcome_page.dart';
 import 'package:banjaloka/respository/bussines_repo.dart';
 import 'package:banjaloka/theme/theme.dart';
@@ -257,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           );
                           if (!mounted) return;
                           Navigator.pushReplacementNamed(
-                              context, Privasi.routeName);
+                              context, RegisterPageSuccess.routeName);
                         } on EmailAlreadyRegistered catch (_) {
                           _emailError = !_emailError;
                           setState(() {});
