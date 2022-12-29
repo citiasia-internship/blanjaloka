@@ -34,7 +34,7 @@ class MarketModalScreen extends StatelessWidget {
           horizontal: 25,
           vertical: 23
         ),
-        child: buildHaveData(businessBloc)
+        child: buildHaveData(businessBloc),
       ),
     );
   }

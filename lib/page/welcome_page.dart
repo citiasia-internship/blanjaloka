@@ -1,5 +1,6 @@
 import 'package:banjaloka/constants/routes.dart';
 import 'package:banjaloka/page/home_page.dart';
+import 'package:banjaloka/page/privacy_page.dart';
 import 'package:banjaloka/page/register/register_page.dart';
 import 'package:banjaloka/theme/theme.dart';
 import 'package:banjaloka/widget/costume_button.dart';
@@ -56,7 +57,7 @@ class WelcomePage extends StatelessWidget {
                 // BUTTON DAFTAR
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RegisterPage.routeName);
+                    Navigator.pushNamed(context, Privasi.routeName);
                   },
                   child: costumeButtonBorder('Daftar'),
                 ),
