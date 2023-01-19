@@ -1,6 +1,6 @@
 # banjaloka
 
-Uji coba pembuatan prototype aplikasi p2p landing berbasis mobile
+Pembuatan prototype aplikasi p2p landing berbasis mobile
 
 ## Getting Started
 
